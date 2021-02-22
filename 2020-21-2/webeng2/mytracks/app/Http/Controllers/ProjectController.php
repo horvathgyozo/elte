@@ -26,8 +26,50 @@ class ProjectController extends Controller
             'projects'  => $projects,
         ]);
     }
+
     public function create()
     {
         return view('projects.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated_data = $request->validate([
+            'name'          => 'required',
+            'description'   => 'nullable',
+            'image_url'     => 'nullable|url',
+        ]);
+        // $validated_data // Database save
+        // return $this->index();
+        return redirect()->route('projects.list');
+    }
+
+    public function edit($id)
+    {
+        $project = [
+            'id' => 1,
+            'name' => 'Project1',
+            'description' => 'Description1',
+            'image_url' => '',
+        ];
+        return view('projects.edit', [
+            'project' => $project,
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $validated_data = $request->validate([
+            'name'          => 'required',
+            'description'   => 'nullable',
+            'image_url'     => 'nullable|url',
+        ]);
+        // $validated_data // Database save
+        return redirect()->route('projects.list');
+    }
+
+    public function show($id)
+    {
+        dd($id);
     }
 }
