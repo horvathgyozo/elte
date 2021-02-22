@@ -33,4 +33,40 @@ class ProjectController extends Controller
     {
         return view('projects.create');
     }
+
+    public function store(Request $request)
+    {
+        $validated_data = $request->validate([
+            'name'        => 'required',
+            'description' => 'nullable',
+            'image_url'   => 'nullable|url'
+        ]);
+        // dd($validated_data);
+        return redirect()->route('projects.list');
+    }
+
+    public function edit($id)
+    {
+        // dump($id);
+        $project = [
+            'id'=> 1,
+            'name' => 'Project1',
+            'description' => 'Description1',
+            'image_url' => '',
+        ];
+        return view('projects.edit', [
+            'project'   => $project,
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $validated_data = $request->validate([
+            'name'        => 'required',
+            'description' => 'nullable',
+            'image_url'   => 'nullable|url'
+        ]);
+        // dump($validated_data);
+        return redirect()->route('projects.list');
+    }
 }

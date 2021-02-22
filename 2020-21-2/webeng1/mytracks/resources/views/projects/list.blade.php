@@ -14,6 +14,7 @@
             <p class="card-text">{{ $project['description'] }}</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <a href="#" class="btn btn-primary">Open</a>
+            <a href="{{ route('projects.edit', ['id' => $project['id']]) }}" class="btn btn-secondary">Edit</a>
           </div>
         </div>
       </div>
@@ -21,7 +22,7 @@
     
     <div class="col-sm-3 my-3">
       <div class="card h-100">
-        <a href="new-project.html" class="btn btn-secondary h-100 pt-5">Create a new project</a>
+        <a href="/projects/create" class="btn btn-secondary h-100 pt-5">Create a new project</a>
       </div>
     </div>
 
