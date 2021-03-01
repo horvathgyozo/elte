@@ -2,28 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectFormRequest;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = [
-            [
-                'id' => 1,
-                'name' => 'Project1',
-                'description' => 'Description1',
-                'bg_url' => '',
-            ],
-            [
-                'id' => 2,
-                'name' => 'Project2',
-                'description' => 'Description222222',
-                'bg_url' => 'http://web1.sthgrafton-h.schools.nsw.edu.au/wp-content/uploads/2015/08/MusicWorkShop-Image.jpg',
-            ],
-        ];
+        $projects = Project::all();
         return view('projects.list', [
             'projects'  => $projects,
+        ]);
+    }
+
+    public function show(Project $project)
+    {
+        // $project = Project::find($id);
+        return view('projects.show', [
+            'project' => $project,
         ]);
     }
 
@@ -32,44 +29,36 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store(Request $request)
+    public function store(ProjectFormRequest $request)
     {
-        $validated_data = $request->validate([
-            'name'          => 'required',
-            'description'   => 'nullable',
-            'image_url'     => 'nullable|url',
-        ]);
+        $validated_data = $request->validated();
+        Project::create($validated_data);
         // $validated_data // Database save
         // return $this->index();
-        return redirect()->route('projects.list');
+        return redirect()->route('projects.index');
     }
 
-    public function edit($id)
+    public function edit(Project $project)
     {
-        $project = [
-            'id' => 1,
-            'name' => 'Project1',
-            'description' => 'Description1',
-            'image_url' => '',
-        ];
+        // $project = Project::find($id);
         return view('projects.edit', [
             'project' => $project,
         ]);
     }
 
-    public function update($id, Request $request)
+    public function update(Project $project, ProjectFormRequest $request)
     {
-        $validated_data = $request->validate([
-            'name'          => 'required',
-            'description'   => 'nullable',
-            'image_url'     => 'nullable|url',
-        ]);
+        $validated_data = $request->validated();
+        // $project = Project::find($id);
+        $project->update($validated_data);
         // $validated_data // Database save
-        return redirect()->route('projects.list');
+        return redirect()->route('projects.show', ['project' => $project->id]);
     }
 
-    public function show($id)
+    public function destroy(Project $project)
     {
-        dd($id);
+        // Project::destroy($id);
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }

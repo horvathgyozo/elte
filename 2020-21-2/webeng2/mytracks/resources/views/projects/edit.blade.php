@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-3">
       <h2>Edit a project</h2>
-      <form action="{{ route('projects.update', ['id' => $project['id']]) }}" method="POST">
+      <form action="{{ route('projects.update', ['project' => $project->id]) }}" method="POST">
         {{-- HTTP: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS,  --}}
         @csrf
         @method('PUT')
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Add new project</button>
+          <button type="submit" class="btn btn-primary">Update project</button>
         </div>
 
       </form>

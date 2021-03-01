@@ -25,9 +25,17 @@ Route::get('/', function () {
 //     return view('projects.list');
 // });
 // Route::view('/projects', 'projects.list');
-Route::get('/projects', [ProjectController::class, 'index'])->name('projects.list');
-Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
-Route::get('/projects/{id}/show', [ProjectController::class, 'show'])->name('projects.show');
-Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
-Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
-Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projects.update');
+
+// Route::get('/projects', [ProjectController::class, 'index'])->name('projects.list');
+
+// Route::get('/projects/{project}/show', [ProjectController::class, 'show'])->name('projects.show');
+
+// Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+// Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+
+// Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+// Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
+
+// Route::delete('/projects/{project}', [ProjectController::class, 'delete'])->name('projects.delete');
+
+Route::resource('projects', ProjectController::class);
