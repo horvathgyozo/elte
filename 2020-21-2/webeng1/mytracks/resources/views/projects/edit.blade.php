@@ -3,8 +3,9 @@
 @section('content')
 
   <h2>Edit a project</h2>
-  <form action="{{ route('projects.update', ['id' => $project['id']]) }}" method="POST">
+  <form action="{{ route('projects.update', ['project' => $project['id']]) }}" method="POST">
     @csrf
+    @method('put')
 
     <div class="form-group">
       <label for="name">Project name</label>
