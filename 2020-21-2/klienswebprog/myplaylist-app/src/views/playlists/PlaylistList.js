@@ -1,14 +1,17 @@
-import { examplePlaylists } from "../../domain/playlist";
+import cn from "classnames";
 
-export function PlaylistList() {
-  console.log(examplePlaylists);
+export function PlaylistList({ playlists, selectedPlaylistId, onSelect }) {
   return (
     <div className="ui very relaxed selection list">
-      {examplePlaylists.map((playlist) => (
-        <div className="item">
+      {playlists.map((playlist) => (
+        <div
+          className={cn("item", { active: playlist.id === selectedPlaylistId })}
+          key={playlist.id}
+          onClick={() => onSelect(playlist.id)}
+        >
           <i className="large compact disc middle aligned icon"></i>
           <div className="content">
-            <a className="header">{playlist.title}</a>
+            <div className="header">{playlist.title}</div>
             <div className="description">{playlist.tracks.length} songs</div>
           </div>
         </div>
