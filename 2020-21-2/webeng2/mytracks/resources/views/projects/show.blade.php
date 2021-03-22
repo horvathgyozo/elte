@@ -22,9 +22,9 @@
             <span class="badge badge-primary badge-pill">Muted</span>
           </p>
           <ul class="list-group list-group-horizontal">
-            <li class="list-group-item p-1">Filter1</li>
-            <li class="list-group-item p-1">Filter2</li>
-            <li class="list-group-item p-1">Filter3</li>
+            @foreach ($track->filters as $filter)
+              <li class="list-group-item p-1">{{$filter->name}}</li>
+            @endforeach
           </ul>
           <a href="{{ route('tracks.edit', ['track' => $track->id]) }}" class="btn btn-secondary">Edit</a>
           <form action="{{ route('tracks.destroy', ['track' => $track->id]) }}" method="POST" class="d-inline">

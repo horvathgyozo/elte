@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Filter;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class FilterSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class FilterSeeder extends Seeder
      */
     public function run()
     {
-        Filter::factory(10)->create();
+        User::factory(3)->create();
     }
 }
