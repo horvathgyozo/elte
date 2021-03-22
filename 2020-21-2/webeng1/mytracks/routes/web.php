@@ -27,5 +27,11 @@ Route::get('/', function () {
 // Route::put('/projects/{project}/update', [ProjectController::class, 'update'])->name('projects.update');
 // Route::delete('/projects/{project}', [ProjectController::class, 'delete'])->name('projects.delete');
 
-Route::resource('projects', ProjectController::class);
-Route::resource('projects.tracks', TrackController::class)->shallow();
+Route::middleware(['auth'])->group(function() {
+    Route::resource('projects', ProjectController::class);
+    Route::resource('projects.tracks', TrackController::class)->shallow();
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

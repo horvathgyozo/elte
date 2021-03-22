@@ -15,4 +15,9 @@ class Track extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function filters()
+    {
+        return $this->belongsToMany(Filter::class);
+    }
 }
