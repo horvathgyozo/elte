@@ -10,7 +10,9 @@
     "fomantic-ui-css": "^2.8.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "semantic-ui-react": "^2.0.3",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
