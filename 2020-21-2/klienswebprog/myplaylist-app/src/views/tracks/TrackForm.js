@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "semantic-ui-react";
 
-function Field({ label, placeholder, name, value, onChange }) {
+function Field({ label, placeholder, name, value, onChange, ...attrs }) {
   return (
     <div className="field">
       <label>{label}</label>
@@ -11,6 +11,7 @@ function Field({ label, placeholder, name, value, onChange }) {
         onChange={(e) => onChange(name, e.target.value)}
         type="text"
         placeholder={placeholder}
+        {...attrs}
       />
     </div>
   );
@@ -26,19 +27,38 @@ const defaultState = {
   lyricsURL: "",
 };
 
-export function TrackForm({ open, onClose }) {
+export function TrackForm({ open, onClose, onSubmit, track }) {
   const [formState, setFormState] = useState(defaultState);
+
+  useEffect(() => {
+    if (open) {
+      setFormState({ ...defaultState, ...track });
+    }
+  }, [open, track]);
 
   const handleFieldChange = (name, value) => {
     setFormState({ ...formState, [name]: value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formState);
+    onClose();
+  };
+
   return (
-    <Modal closeIcon className="ui modal" open={open} onClose={onClose}>
+    <Modal
+      as="form"
+      closeIcon
+      className="ui modal"
+      open={open}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
       <div className="header">Add new Track</div>
       <div className="image content">
         <div className="description">
-          <form className="ui form">
+          <div className="ui form">
             <div className="three fields">
               <Field
                 value={formState.artist}
@@ -46,6 +66,7 @@ export function TrackForm({ open, onClose }) {
                 label="Author"
                 placeholder="John Williams"
                 onChange={handleFieldChange}
+                required
               />
               <Field
                 value={formState.title}
@@ -53,6 +74,7 @@ export function TrackForm({ open, onClose }) {
                 label="Track name"
                 placeholder="Imperial March"
                 onChange={handleFieldChange}
+                required
               />
               <Field
                 value={formState.length}
@@ -85,17 +107,21 @@ export function TrackForm({ open, onClose }) {
                 onChange={handleFieldChange}
               />
             </div>
-          </form>
+          </div>
         </div>
       </div>
       <div className="actions">
-        <button onClick={onClose} className="ui black deny button">
+        <button
+          type="button"
+          onClick={onClose}
+          className="ui black deny button"
+        >
           Cancel
         </button>
-        <div className="ui positive right labeled icon button">
+        <button type="submit" className="ui positive right labeled icon button">
           Add
           <i className="plus icon"></i>
-        </div>
+        </button>
       </div>
     </Modal>
   );

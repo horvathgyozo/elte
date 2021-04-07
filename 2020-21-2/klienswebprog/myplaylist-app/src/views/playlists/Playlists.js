@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router";
-import { examplePlaylists } from "../../domain/playlist";
-import { exampleTracks } from "../../domain/track";
+import { PlaylistsContext } from "../../state/PlaylistsProvider";
+import { TracksContext } from "../../state/TracksProvider";
 import { PlaylistForm } from "./PlaylistForm";
 import { PlaylistList } from "./PlaylistList";
 import { TrackDetail } from "./TrackDetail";
@@ -12,14 +12,13 @@ export function Playlists() {
   const selectedPlaylistId = Number.parseInt(playlistIdParam);
   const selectedTrackId = Number.parseInt(trackIdParam);
 
-  const [playlists, setPlaylists] = useState(examplePlaylists);
+  const { playlists, setPlaylists } = useContext(PlaylistsContext);
+  const { tracks } = useContext(TracksContext);
 
   const selectedPlaylist = playlists.find(
     (playlist) => playlist.id === selectedPlaylistId
   );
-  const selectedTrack = exampleTracks.find(
-    (track) => track.id === selectedTrackId
-  );
+  const selectedTrack = tracks.find((track) => track.id === selectedTrackId);
 
   const handleSubmit = (title) => {
     const id =
