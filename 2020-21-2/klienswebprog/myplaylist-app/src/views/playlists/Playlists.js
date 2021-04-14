@@ -12,28 +12,14 @@ export function Playlists() {
   const selectedPlaylistId = Number.parseInt(playlistIdParam);
   const selectedTrackId = Number.parseInt(trackIdParam);
 
-  const { playlists, setPlaylists } = useContext(PlaylistsContext);
+  const { playlists, addNewPlaylist } = useContext(PlaylistsContext);
   const { tracks } = useContext(TracksContext);
 
-  const selectedPlaylist = playlists.find(
-    (playlist) => playlist.id === selectedPlaylistId
-  );
+  const selectedPlaylist = playlists.find((playlist) => playlist.id === selectedPlaylistId);
   const selectedTrack = tracks.find((track) => track.id === selectedTrackId);
 
   const handleSubmit = (title) => {
-    const id =
-      playlists.reduce(
-        (max, playlist) => (playlist.id > max ? playlist.id : max),
-        -Infinity
-      ) + 1;
-    setPlaylists([
-      ...playlists,
-      {
-        id,
-        title,
-        tracks: [],
-      },
-    ]);
+    addNewPlaylist(title);
   };
 
   return (
@@ -43,16 +29,10 @@ export function Playlists() {
         <div className="ui six wide column">
           <h3>Playlists</h3>
           <PlaylistForm onSubmit={handleSubmit} />
-          <PlaylistList
-            playlists={playlists}
-            selectedPlaylistId={selectedPlaylistId}
-          />
+          <PlaylistList playlists={playlists} selectedPlaylistId={selectedPlaylistId} />
         </div>
         <div className="ui ten wide column">
-          <TrackList
-            playlist={selectedPlaylist}
-            selectedTrackId={selectedTrackId}
-          />
+          <TrackList playlist={selectedPlaylist} selectedTrackId={selectedTrackId} />
         </div>
       </div>
       <div className="ui divider"></div>

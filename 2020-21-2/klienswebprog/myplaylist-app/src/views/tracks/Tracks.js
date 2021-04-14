@@ -5,8 +5,8 @@ import { PlaylistsContext } from "../../state/PlaylistsProvider";
 import { TracksContext } from "../../state/TracksProvider";
 
 export function Tracks() {
-  const { tracks, setTracks } = useContext(TracksContext);
-  const { playlists, setPlaylists } = useContext(PlaylistsContext);
+  const { tracks, addNewTrack, editTrack, deleteTrack } = useContext(TracksContext);
+  const { playlists, deleteTrackFromMultiplePlaylists, addTrackToPlaylist } = useContext(PlaylistsContext);
   const [open, setOpen] = useState(false);
   const [editedTrack, setEditedTrack] = useState({});
 
@@ -17,10 +17,9 @@ export function Tracks() {
   const handleClose = () => setOpen(false);
   const handleSubmit = (track) => {
     if (!track.id) {
-      const id = Date.now();
-      setTracks([...tracks, { ...track, id }]);
+      addNewTrack(track);
     } else {
-      setTracks(tracks.map((tr) => (tr.id === track.id ? track : tr)));
+      editTrack(track);
     }
   };
   const handleEdit = (track) => {
@@ -28,51 +27,19 @@ export function Tracks() {
     setOpen(true);
   };
   const handleDelete = (track) => {
-    setTracks(tracks.filter((tr) => tr.id !== track.id));
+    deleteTrack(track);
     deleteTrackFromMultiplePlaylists(track);
   };
   const handleSelect = (playlistId, trackId) => {
-    addTrackToPlaylist(playlistId, trackId);
-  };
-
-  const deleteTrackFromPlaylist = (playlist, trackId) => {
-    const modifiedPlaylist = {
-      ...playlist,
-      tracks: playlist.tracks.filter((tr) => tr.id !== trackId),
-    };
-    return modifiedPlaylist;
-  };
-  const deleteTrackFromMultiplePlaylists = (track) => {
-    setPlaylists(
-      playlists.map((playlist) => deleteTrackFromPlaylist(playlist, track.id))
-    );
-  };
-  const addTrackToPlaylist = (playlistId, trackId) => {
-    const playlist = playlists.find((pl) => pl.id === playlistId);
-    if (!playlist) return;
-
-    if (playlist.tracks.some((tr) => tr.id === trackId)) return;
-
     const track = tracks.find((tr) => tr.id === trackId);
     if (!track) return;
-
-    const modifiedPlaylist = {
-      ...playlist,
-      tracks: playlist.tracks.concat(track),
-    };
-    setPlaylists(
-      playlists.map((pl) => (pl.id === playlistId ? modifiedPlaylist : pl))
-    );
+    addTrackToPlaylist(playlistId, track);
   };
 
   return (
     <>
       <div className="ui container">
-        <button
-          onClick={handleNew}
-          className="ui right floated green button"
-          id="newModal"
-        >
+        <button onClick={handleNew} className="ui right floated green button" id="newModal">
           <i className="plus icon"></i>
           New track
         </button>
@@ -100,12 +67,7 @@ export function Tracks() {
         </table>
       </div>
 
-      <TrackForm
-        track={editedTrack}
-        open={open}
-        onClose={handleClose}
-        onSubmit={handleSubmit}
-      />
+      <TrackForm track={editedTrack} open={open} onClose={handleClose} onSubmit={handleSubmit} />
     </>
   );
 }
