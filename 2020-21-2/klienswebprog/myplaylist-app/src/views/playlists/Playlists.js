@@ -1,6 +1,10 @@
 import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { addPlaylist } from "../../state/playlists/actions";
+import { getPlaylists } from "../../state/playlists/selectors";
 import { PlaylistsContext } from "../../state/PlaylistsProvider";
+import { getTracks } from "../../state/tracks/selectors";
 import { TracksContext } from "../../state/TracksProvider";
 import { PlaylistForm } from "./PlaylistForm";
 import { PlaylistList } from "./PlaylistList";
@@ -12,8 +16,9 @@ export function Playlists() {
   const selectedPlaylistId = Number.parseInt(playlistIdParam);
   const selectedTrackId = Number.parseInt(trackIdParam);
 
-  const { playlists, addNewPlaylist } = useContext(PlaylistsContext);
-  const { tracks } = useContext(TracksContext);
+  const playlists = useSelector(getPlaylists);
+  const tracks = useSelector(getTracks);
+  const dispatch = useDispatch();
 
   const playlistsWithTracks = playlists.map((playlist) => ({
     ...playlist,
@@ -24,7 +29,7 @@ export function Playlists() {
   const selectedTrack = tracks.find((track) => track.id === selectedTrackId);
 
   const handleSubmit = (title) => {
-    addNewPlaylist(title);
+    dispatch(addPlaylist(title));
   };
 
   return (

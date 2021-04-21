@@ -1,14 +1,19 @@
 import { TrackForm } from "./TrackForm";
 import { Track } from "./Track";
-import { useContext, useState } from "react";
-import { PlaylistsContext } from "../../state/PlaylistsProvider";
-import { TracksContext } from "../../state/TracksProvider";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addTrack, deleteTrack, updateTrack } from "../../state/tracks/actions";
+import { getTracks } from "../../state/tracks/selectors";
+import { getPlaylists } from "../../state/playlists/selectors";
+import { addTrackToPlaylist } from "../../state/playlists/actions";
 
 export function Tracks() {
-  const { tracks, addNewTrack, editTrack, deleteTrack } = useContext(TracksContext);
-  const { playlists, deleteTrackFromMultiplePlaylists, addTrackToPlaylist } = useContext(PlaylistsContext);
   const [open, setOpen] = useState(false);
   const [editedTrack, setEditedTrack] = useState({});
+
+  const tracks = useSelector(getTracks);
+  const playlists = useSelector(getPlaylists);
+  const dispatch = useDispatch();
 
   const handleNew = () => {
     setEditedTrack({});
@@ -17,9 +22,9 @@ export function Tracks() {
   const handleClose = () => setOpen(false);
   const handleSubmit = (track) => {
     if (!track.id) {
-      addNewTrack(track);
+      dispatch(addTrack(track));
     } else {
-      editTrack(track);
+      dispatch(updateTrack(track));
     }
   };
   const handleEdit = (track) => {
@@ -27,13 +32,10 @@ export function Tracks() {
     setOpen(true);
   };
   const handleDelete = (track) => {
-    deleteTrack(track);
-    deleteTrackFromMultiplePlaylists(track);
+    dispatch(deleteTrack(track));
   };
   const handleSelect = (playlistId, trackId) => {
-    const track = tracks.find((tr) => tr.id === trackId);
-    if (!track) return;
-    addTrackToPlaylist(playlistId, track);
+    dispatch(addTrackToPlaylist(playlistId, trackId));
   };
 
   return (

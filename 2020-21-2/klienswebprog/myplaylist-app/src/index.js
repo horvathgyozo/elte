@@ -9,14 +9,20 @@ import { playlistsStorage } from "./api/PlaylistsStorage";
 import { examplePlaylists } from "./domain/playlist";
 import { tracksStorage } from "./api/TrackStorage";
 import { exampleTracks } from "./domain/track";
+import { configureStore } from "./state/store";
+import { Provider } from "react-redux";
+
+const store = configureStore();
 
 const render = () =>
   ReactDOM.render(
-    <TracksProvider>
-      <PlaylistsProvider>
-        <App />
-      </PlaylistsProvider>
-    </TracksProvider>,
+    <Provider store={store}>
+      <TracksProvider>
+        <PlaylistsProvider>
+          <App />
+        </PlaylistsProvider>
+      </TracksProvider>
+    </Provider>,
     document.getElementById("root")
   );
 
