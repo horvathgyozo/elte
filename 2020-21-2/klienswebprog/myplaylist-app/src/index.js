@@ -19,10 +19,10 @@ const render = () =>
   );
 
 async function start() {
-  // const newPlaylist = await playlistsStorage.create({ title: "Something", tracks: [] });
-  // console.log(newPlaylist);
   // const newPlaylists = await playlistsStorage.fill(examplePlaylists);
   // console.log(newPlaylists);
+  // const newPlaylist = await playlistsStorage.create({ title: "Something", tracks: [] });
+  // console.log(newPlaylist);
   // const playlists = await playlistsStorage.getAll();
   // console.log(playlists);
   // // console.log(await playlistsStorage.update({ id: "1DV9bV0yTK1E29iW", title: "Else" }));

@@ -13,8 +13,19 @@ const promisify = (fn) => (...args) => {
 };
 
 const promisifyNedb = (nedb) => {
+  nedb.getNewId = function (cb) {
+    this.find({})
+      .sort({ id: -1 }) // reverse sort
+      .limit(1) // get the first
+      .exec(function (err, docs) {
+        const id = docs[0]?.id + 1 ?? 1;
+        cb && cb(err, id);
+      });
+    return this;
+  };
+
   const db = {};
-  const methods = ["find", "findOne", "insert", "update", "remove"];
+  const methods = ["find", "findOne", "insert", "update", "remove", "getNewId"];
   methods.forEach((method) => (db[method] = promisify(nedb[method].bind(nedb))));
   return db;
 };
@@ -24,11 +35,11 @@ class PlaylistsStorage {
     this.db = promisifyNedb(nedb);
   }
   async create(playlist) {
-    if (playlist.id) {
-      playlist._id = playlist.id;
+    if (!playlist.id) {
+      playlist.id = await this.db.getNewId();
     }
+    playlist._id = playlist.id;
     const newPlaylist = await this.db.insert(playlist);
-    newPlaylist.id = newPlaylist._id;
     return newPlaylist;
   }
   async fill(playlists) {
