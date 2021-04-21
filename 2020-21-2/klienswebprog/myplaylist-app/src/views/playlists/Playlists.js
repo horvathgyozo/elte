@@ -15,7 +15,12 @@ export function Playlists() {
   const { playlists, addNewPlaylist } = useContext(PlaylistsContext);
   const { tracks } = useContext(TracksContext);
 
-  const selectedPlaylist = playlists.find((playlist) => playlist.id === selectedPlaylistId);
+  const playlistsWithTracks = playlists.map((playlist) => ({
+    ...playlist,
+    tracks: playlist.tracks.map((trackId) => tracks.find((track) => track.id === trackId)).filter((track) => !!track),
+  }));
+
+  const selectedPlaylist = playlistsWithTracks.find((playlist) => playlist.id === selectedPlaylistId);
   const selectedTrack = tracks.find((track) => track.id === selectedTrackId);
 
   const handleSubmit = (title) => {
@@ -29,7 +34,7 @@ export function Playlists() {
         <div className="ui six wide column">
           <h3>Playlists</h3>
           <PlaylistForm onSubmit={handleSubmit} />
-          <PlaylistList playlists={playlists} selectedPlaylistId={selectedPlaylistId} />
+          <PlaylistList playlists={playlistsWithTracks} selectedPlaylistId={selectedPlaylistId} />
         </div>
         <div className="ui ten wide column">
           <TrackList playlist={selectedPlaylist} selectedTrackId={selectedTrackId} />

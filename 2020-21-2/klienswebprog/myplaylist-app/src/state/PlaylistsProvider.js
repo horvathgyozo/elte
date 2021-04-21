@@ -18,7 +18,7 @@ const usePlaylistsService = () => {
   const deleteTrackFromPlaylist = async (playlist, trackId) => {
     const modifiedPlaylist = {
       ...playlist,
-      tracks: playlist.tracks.filter((tr) => tr.id !== trackId),
+      tracks: playlist.tracks.filter((trid) => trid !== trackId),
     };
     return await playlistsStorage.update(modifiedPlaylist);
   };
@@ -31,11 +31,11 @@ const usePlaylistsService = () => {
     const playlist = playlists.find((pl) => pl.id === playlistId);
     if (!playlist) return;
 
-    if (playlist.tracks.some((tr) => tr.id === track.id)) return;
+    if (playlist.tracks.some((trid) => trid === track.id)) return;
 
     const modifiedPlaylist = {
       ...playlist,
-      tracks: playlist.tracks.concat(track),
+      tracks: playlist.tracks.concat(track.id),
     };
     await playlistsStorage.update(modifiedPlaylist);
     setPlaylists(playlists.map((pl) => (pl.id === playlistId ? modifiedPlaylist : pl)));
