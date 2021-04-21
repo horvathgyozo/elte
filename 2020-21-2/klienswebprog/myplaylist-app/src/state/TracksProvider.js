@@ -1,19 +1,26 @@
-import { createContext, useState } from "react";
-import { exampleTracks } from "../domain/track";
+import { createContext, useEffect, useState } from "react";
+import { tracksStorage } from "../api/TrackStorage";
 
-const useTracksService = (initialTracks) => {
+const useTracksService = () => {
   // Data
-  const [tracks, setTracks] = useState(initialTracks);
+  const [tracks, setTracks] = useState([]);
+
+  useEffect(() => {
+    const getAll = async () => setTracks(await tracksStorage.getAll());
+    getAll();
+  }, []);
 
   // Operations
-  const addNewTrack = (track) => {
-    const id = Date.now();
-    setTracks([...tracks, { ...track, id }]);
+  const addNewTrack = async (track) => {
+    const newTrack = await tracksStorage.create(track);
+    setTracks([...tracks, newTrack]);
   };
-  const editTrack = (track) => {
-    setTracks(tracks.map((tr) => (tr.id === track.id ? track : tr)));
+  const editTrack = async (track) => {
+    const updatedTrack = await tracksStorage.update(track);
+    setTracks(tracks.map((tr) => (tr.id === track.id ? updatedTrack : tr)));
   };
-  const deleteTrack = (track) => {
+  const deleteTrack = async (track) => {
+    await tracksStorage.delete(track.id);
     setTracks(tracks.filter((tr) => tr.id !== track.id));
   };
 
@@ -25,6 +32,6 @@ const useTracksService = (initialTracks) => {
 
 export const TracksContext = createContext();
 export const TracksProvider = ({ children }) => {
-  const tracksService = useTracksService(exampleTracks);
+  const tracksService = useTracksService();
   return <TracksContext.Provider value={tracksService}>{children}</TracksContext.Provider>;
 };
