@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Issue } from '../issue';
+import { IssueService } from '../issue.service';
 
 @Component({
   selector: 'app-issue-list',
@@ -6,14 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issue-list.component.css'],
 })
 export class IssueListComponent implements OnInit {
-  issues = [
-    { id: 1, title: 'title1', description: 'desc1', place: 'place1', status: 'NEW' },
-    { id: 2, title: 'title2', description: 'desc2', place: 'place2', status: 'DOING' },
-    { id: 3, title: 'title3', description: 'desc3', place: 'place3', status: 'DOING' },
-    { id: 4, title: 'title4', description: 'desc4', place: 'place4', status: 'DONE' },
-  ];
+  issues: Issue[] = [];
+  status = 'ALL';
+  filteredIssues = this.issues;
+  selectedIssue: Issue = null;
 
-  constructor() {}
+  constructor(private issueService: IssueService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.issues = this.issueService.getIssues();
+    this.filterIssues();
+  }
+
+  filterIssues(): void {
+    this.filteredIssues =
+      this.status === 'ALL' ? this.issues : this.issues.filter((issue) => issue.status === this.status);
+  }
+
+  handleStatusChange(newStatus: string): void {
+    this.status = newStatus;
+    this.filterIssues();
+  }
+
+  handleSave(issue): void {
+    Object.assign(this.selectedIssue, issue);
+    this.selectedIssue = null;
+  }
 }
