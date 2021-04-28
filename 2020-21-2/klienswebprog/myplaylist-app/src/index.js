@@ -29,9 +29,9 @@ const render = () =>
 async function start() {
   // const newTracks = await tracksStorage.fill(exampleTracks);
   // console.log(newTracks);
-
   // const newPlaylists = await playlistsStorage.fill(examplePlaylists);
   // console.log(newPlaylists);
+
   // const newPlaylist = await playlistsStorage.create({ title: "Something", tracks: [] });
   // console.log(newPlaylist);
   // const playlists = await playlistsStorage.getAll();
