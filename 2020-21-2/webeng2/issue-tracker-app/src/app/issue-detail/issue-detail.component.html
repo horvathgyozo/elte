@@ -25,6 +25,6 @@
 
   <p>
     <a class="btn btn-primary" [routerLink]="['/issues', issue.id, 'edit']" role="button">Edit</a>
-    <a class="btn btn-outline-danger" href="#" role="button">Delete</a>
+    <button class="btn btn-outline-danger" role="button" (click)="handleDelete()">Delete</button>
   </p>
 </div>

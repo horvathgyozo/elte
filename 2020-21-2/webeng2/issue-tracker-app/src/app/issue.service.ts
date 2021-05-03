@@ -21,4 +21,21 @@ export class IssueService {
   public getIssue(id: number): Issue {
     return this.issues.find((issue) => issue.id === id);
   }
+
+  public updateIssue(id: number, modifiedIssue: Issue): Issue {
+    const issue = this.getIssue(id);
+    Object.assign(issue, modifiedIssue);
+    return issue;
+  }
+
+  public addIssue(newIssue: Issue): Issue {
+    const id = this.issues.length + 1;
+    newIssue.id = id;
+    this.issues.push(newIssue);
+    return newIssue;
+  }
+
+  public deleteIssue(id: number): void {
+    this.issues = this.issues.filter((issue) => issue.id !== id);
+  }
 }
