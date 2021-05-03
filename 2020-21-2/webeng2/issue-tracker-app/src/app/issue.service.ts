@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Issue } from './issue';
 
@@ -5,37 +6,27 @@ import { Issue } from './issue';
   providedIn: 'root',
 })
 export class IssueService {
-  private issues: Issue[] = [
-    { id: 1, title: 'title1', description: 'desc1', place: 'place1', status: 'NEW' },
-    { id: 2, title: 'title2', description: 'desc2', place: 'place2', status: 'DOING' },
-    { id: 3, title: 'title3', description: 'desc3', place: 'place3', status: 'DOING' },
-    { id: 4, title: 'title4', description: 'desc4', place: 'place4', status: 'DONE' },
-  ];
+  private issueUrl = 'http://localhost:3000/api/issues';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  public getIssues(): Issue[] {
-    return this.issues;
+  public getIssues(): Promise<Issue[]> {
+    return this.http.get<Issue[]>(this.issueUrl).toPromise();
   }
 
-  public getIssue(id: number): Issue {
-    return this.issues.find((issue) => issue.id === id);
+  public getIssue(id: number): Promise<Issue> {
+    return this.http.get<Issue>(`${this.issueUrl}/${id}`).toPromise();
   }
 
-  public updateIssue(id: number, modifiedIssue: Issue): Issue {
-    const issue = this.getIssue(id);
-    Object.assign(issue, modifiedIssue);
-    return issue;
+  public updateIssue(id: number, modifiedIssue: Issue): Promise<Issue> {
+    return this.http.patch<Issue>(`${this.issueUrl}/${id}`, modifiedIssue).toPromise();
   }
 
-  public addIssue(newIssue: Issue): Issue {
-    const id = this.issues.length + 1;
-    newIssue.id = id;
-    this.issues.push(newIssue);
-    return newIssue;
+  public addIssue(newIssue: Issue): Promise<Issue> {
+    return this.http.post<Issue>(this.issueUrl, newIssue).toPromise();
   }
 
-  public deleteIssue(id: number): void {
-    this.issues = this.issues.filter((issue) => issue.id !== id);
+  public deleteIssue(id: number): Promise<void> {
+    return this.http.delete<void>(`${this.issueUrl}/${id}`).toPromise();
   }
 }
