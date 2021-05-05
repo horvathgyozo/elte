@@ -1,0 +1,7 @@
+.messageList {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  opacity: 0.9;
+}

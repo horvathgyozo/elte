@@ -1,4 +1,5 @@
-import { tracksStorage } from "../../api/TrackStorage";
+import { tracksApi } from "../../api/rest";
+import { sendMessage } from "../messages/actions";
 import { deleteTrackFromAllPlaylists } from "../playlists/actions";
 
 export const SET_TRACKS = "SET_TRACKS";
@@ -13,7 +14,7 @@ export const setTracks = (tracks) => ({
 });
 export const addTrackToStore = (track) => ({
   type: ADD_TRACK,
-  payload: { ...track, id: Date.now() },
+  payload: track,
 });
 export const updateTrackInStore = (track) => ({
   type: UPDATE_TRACK,
@@ -26,19 +27,22 @@ export const deleteTrackFromStore = (track) => ({
 
 // Async
 export const fetchTracks = () => async (dispatch) => {
-  const tracks = await tracksStorage.getAll();
+  const tracks = await tracksApi.getAll();
   dispatch(setTracks(tracks));
 };
 export const deleteTrack = (track) => async (dispatch) => {
-  await tracksStorage.delete(track.id);
+  await tracksApi.delete(track.id);
   dispatch(deleteTrackFromStore(track));
   dispatch(deleteTrackFromAllPlaylists(track));
+  dispatch(sendMessage(`Track deleted: ${track.artist} ${track.title}`));
 };
 export const addTrack = (track) => async (dispatch) => {
-  const newTrack = await tracksStorage.create(track);
+  const newTrack = await tracksApi.create(track);
   dispatch(addTrackToStore(newTrack));
+  dispatch(sendMessage(`Track created: ${track.artist} ${track.title}`));
 };
 export const updateTrack = (track) => async (dispatch) => {
-  const updatedTrack = await tracksStorage.update(track);
+  const updatedTrack = await tracksApi.update(track);
   dispatch(updateTrackInStore(updatedTrack));
+  dispatch(sendMessage(`Track updated: ${track.artist} ${track.title}`));
 };

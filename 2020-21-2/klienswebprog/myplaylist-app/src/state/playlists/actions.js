@@ -1,4 +1,4 @@
-import { playlistsStorage } from "../../api/PlaylistsStorage";
+import { playlistsApi } from "../../api/rest";
 import { getPlaylists } from "./selectors";
 
 export const SET_PLAYLISTS = "SET_PLAYLISTS";
@@ -22,11 +22,11 @@ export const updatePlaylist = (playlist) => ({
 // Async
 export const fetchPlaylists = () => async (dispatch) => {
   // dispatch(setPlaylists(await playlistsStorage.getAll()));
-  const playlists = await playlistsStorage.getAll();
+  const playlists = await playlistsApi.getAll();
   dispatch(setPlaylists(playlists));
 };
 export const addPlaylist = (title) => async (dispatch) => {
-  const newPlaylist = await playlistsStorage.create({ title, tracks: [] });
+  const newPlaylist = await playlistsApi.create({ title, tracks: [] });
   dispatch(addPlaylistToStore(newPlaylist));
 };
 export const addTrackToPlaylist = (playlistId, trackId) => async (dispatch, getState) => {
@@ -38,7 +38,7 @@ export const addTrackToPlaylist = (playlistId, trackId) => async (dispatch, getS
     ...playlist,
     tracks: playlist.tracks.concat(trackId),
   };
-  const updatedPlaylist = await playlistsStorage.update(modifiedPlaylist);
+  const updatedPlaylist = await playlistsApi.update(modifiedPlaylist);
   dispatch(updatePlaylist(updatedPlaylist));
 };
 export const deleteTrackFromAllPlaylists = (track) => async (dispatch, getState) => {
@@ -49,7 +49,7 @@ export const deleteTrackFromAllPlaylists = (track) => async (dispatch, getState)
         ...playlist,
         tracks: playlist.tracks.filter((trId) => trId !== track.id),
       };
-      const updatedPlaylist = await playlistsStorage.update(modifiedPlaylist);
+      const updatedPlaylist = await playlistsApi.update(modifiedPlaylist);
       dispatch(updatePlaylist(updatedPlaylist));
     }
   }
