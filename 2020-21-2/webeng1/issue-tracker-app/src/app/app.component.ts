@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public isMenuCollapsed = true;
+
+  constructor(public authService: AuthService, private router: Router) {}
+
+  async logout(): Promise<void> {
+    await this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }
