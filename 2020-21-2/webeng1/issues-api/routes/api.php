@@ -20,15 +20,15 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::post('/token/register', [TokenController::class, 'register']);
-// Route::post('/token/login', [TokenController::class, 'login']);
-// Route::middleware('auth:sanctum')->group(function () {
+Route::post('/token/register', [TokenController::class, 'register']);
+Route::post('/token/login', [TokenController::class, 'login']);
+Route::middleware('auth:sanctum')->group(function () {
     Route::resource('issues', IssueController::class)->except([
         'create', 'edit'
     ]);
-//     Route::get('/user', function (Request $request) {
-//         return $request->user();
-//     });
-//     Route::post('/token/logout', [TokenController::class, 'logout']);
-// });
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('/token/logout', [TokenController::class, 'logout']);
+});
 
