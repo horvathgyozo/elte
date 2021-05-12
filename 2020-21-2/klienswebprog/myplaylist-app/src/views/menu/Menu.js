@@ -1,7 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { Menu as MenuComp } from "semantic-ui-react";
+import { useDispatch, useSelector } from "react-redux";
+import { getIsLoggedIn, getUser } from "../../state/auth/selectors";
+import { logout } from "../../state/auth/actions";
 
 export function Menu() {
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const user = useSelector(getUser);
+  const dispatch = useDispatch();
+
+  const handleLogout = (e) => {
+    dispatch(logout());
+  };
+
   return (
     <nav className="ui secondary menu">
       <img src={logo} alt="" />
@@ -17,21 +29,17 @@ export function Menu() {
       <NavLink className="item" to="/search">
         <i className="search icon"></i> Search
       </NavLink>
-      <div className="ui right dropdown item">
-        John Doe
-        <i className="dropdown icon"></i>
-        <div className="menu">
-          <div className="item">
-            <i className="user icon"></i> Profile
-          </div>
-          <div className="item">
-            <i className="settings icon"></i> Settings
-          </div>
-          <div className="item">
-            <i className="sign out icon"></i>Log out
-          </div>
-        </div>
-      </div>
+      <MenuComp.Menu position="right">
+        {isLoggedIn ? (
+          <a href="#logout" className="item" onClick={handleLogout}>
+            Log out ({user.email})
+          </a>
+        ) : (
+          <Link to="/" className="item">
+            Log in
+          </Link>
+        )}
+      </MenuComp.Menu>
     </nav>
   );
 }
