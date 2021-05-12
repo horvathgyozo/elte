@@ -1,4 +1,4 @@
-import io from "socket.io-client";
+import { socketApi } from "../../api/SocketApi";
 import { fetchTracks } from "../tracks/actions";
 
 export const ADD_MESSAGE = "ADD_MESSAGE";
@@ -16,13 +16,10 @@ export const deleteMessage = (message) => ({
 });
 
 // Socket.io
-let socket = null;
-
 export const wsConnect = () => (dispatch) => {
-  socket = io("http://localhost:3030");
-  console.log(socket);
-  socket.on("messages created", (message) => {
-    if (message.emitter !== socket.id) {
+  socketApi.connect();
+  socketApi.onMessageReceived((message) => {
+    if (message.emitter !== socketApi.id) {
       dispatch(addMessage(message));
       setTimeout(() => {
         dispatch(deleteMessage(message));
@@ -33,9 +30,9 @@ export const wsConnect = () => (dispatch) => {
 };
 
 export const sendMessage = (text) => (dispatch) => {
-  socket.emit("create", "messages", {
+  socketApi.sendMessage({
     id: Date.now().toString(),
     text,
-    emitter: socket.id,
+    emitter: socketApi.id,
   });
 };

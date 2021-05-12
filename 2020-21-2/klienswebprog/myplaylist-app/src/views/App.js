@@ -26,11 +26,11 @@ export function App() {
 
   useEffect(() => {
     dispatch(wsConnect());
-  });
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(restoreUser());
-  });
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
