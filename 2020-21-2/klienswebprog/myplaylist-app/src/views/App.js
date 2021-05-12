@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { tracksStorage } from "../api/TrackStorage";
+import { restoreUser } from "../state/auth/actions";
 import { getIsLoggedIn } from "../state/auth/selectors";
 import { wsConnect } from "../state/messages/actions";
 import { fetchPlaylists } from "../state/playlists/actions";
@@ -25,6 +26,10 @@ export function App() {
 
   useEffect(() => {
     dispatch(wsConnect());
+  });
+
+  useEffect(() => {
+    dispatch(restoreUser());
   });
 
   return (

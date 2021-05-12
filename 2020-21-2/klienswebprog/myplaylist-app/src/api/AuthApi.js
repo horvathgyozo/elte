@@ -21,4 +21,7 @@ export class AuthApi {
   getToken() {
     return window.sessionStorage.getItem("api-token");
   }
+  async getUserById(userId) {
+    return await request(`/users/${userId}`);
+  }
 }

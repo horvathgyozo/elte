@@ -26,4 +26,19 @@ export const logout = () => (dispatch) => {
   dispatch(removeUser());
 };
 
-// restoreUser
+export const restoreUser = () => async (dispatch) => {
+  const token = authApi.getToken();
+  if (token) {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    const userId = payload.sub;
+    const user = await authApi.getUserById(userId, token);
+    if (!user.code) {
+      dispatch(
+        storeUser({
+          user,
+          accessToken: token,
+        })
+      );
+    }
+  }
+};
