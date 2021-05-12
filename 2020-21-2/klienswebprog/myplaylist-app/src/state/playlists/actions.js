@@ -1,5 +1,6 @@
 import { playlistsApi } from "../../api/rest";
 import { getPlaylists } from "./selectors";
+import { getUserId } from "../auth/selectors";
 
 export const SET_PLAYLISTS = "SET_PLAYLISTS";
 export const ADD_PLAYLIST = "ADD_PLAYLIST";
@@ -20,9 +21,10 @@ export const updatePlaylist = (playlist) => ({
 });
 
 // Async
-export const fetchPlaylists = () => async (dispatch) => {
+export const fetchPlaylists = () => async (dispatch, getState) => {
   // dispatch(setPlaylists(await playlistsStorage.getAll()));
-  const playlists = await playlistsApi.getAll();
+  const userId = getUserId(getState());
+  const playlists = await playlistsApi.getAll(userId);
   dispatch(setPlaylists(playlists));
 };
 export const addPlaylist = (title) => async (dispatch) => {

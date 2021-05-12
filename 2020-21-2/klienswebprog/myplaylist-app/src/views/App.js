@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { tracksStorage } from "../api/TrackStorage";
+import { getIsLoggedIn } from "../state/auth/selectors";
 import { wsConnect } from "../state/messages/actions";
 import { fetchPlaylists } from "../state/playlists/actions";
 import { fetchTracks, setTracks } from "../state/tracks/actions";
@@ -13,11 +14,14 @@ import { Tracks } from "./tracks/Tracks";
 
 export function App() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   useEffect(() => {
-    dispatch(fetchPlaylists());
-    dispatch(fetchTracks());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(fetchPlaylists());
+      dispatch(fetchTracks());
+    }
+  }, [dispatch, isLoggedIn]);
 
   useEffect(() => {
     dispatch(wsConnect());
@@ -30,12 +34,12 @@ export function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/playlists/:playlistId?/:trackId?">
+          <PrivateRoute path="/playlists/:playlistId?/:trackId?">
             <Playlists />
-          </Route>
-          <Route path="/tracks">
+          </PrivateRoute>
+          <PrivateRoute path="/tracks">
             <Tracks />
-          </Route>
+          </PrivateRoute>
           <Route path="/search">
             <Search />
           </Route>
@@ -44,3 +48,8 @@ export function App() {
     </BrowserRouter>
   );
 }
+
+const PrivateRoute = ({ children, ...props }) => {
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  return <Route {...props}>{isLoggedIn ? children : <Redirect to="/" />}</Route>;
+};

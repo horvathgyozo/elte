@@ -1,14 +1,22 @@
-const ACCESS_TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6ImFjY2VzcyJ9.eyJpYXQiOjE2MTk1OTgyMjAsImV4cCI6MTYyMjE5MDIyMCwiYXVkIjoiaHR0cHM6Ly95b3VyZG9tYWluLmNvbSIsImlzcyI6ImZlYXRoZXJzIiwic3ViIjoiMSIsImp0aSI6IjJmYTBiNzY2LWVlNTYtNGI0MC1hZGUyLTY2ODQ0NDlhY2RmMCJ9.qqANqMHQTxuZ3c--38090yr9GxAFod48l5yZLmx2x2g";
 const BASE_URL = "http://localhost:3030";
-const request = async (path, options = {}) => {
+
+export const request = async (path, options = {}, userId) => {
+  let url = `${BASE_URL}${path}`;
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: `Bearer ${ACCESS_TOKEN}`,
+    // Authorization: `Bearer ${ACCESS_TOKEN}`,
     ...options.headers,
   };
-  const response = await fetch(`${BASE_URL}${path}`, {
+  const token = window.sessionStorage.getItem("api-token");
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  if (userId) {
+    url += `?userId=${userId}`;
+  }
+
+  const response = await fetch(url, {
     headers,
     ...options,
   });
@@ -30,8 +38,8 @@ export class RestApi {
     // this.db.remove({}, { multi: true });
     // return await Promise.all(objects.map((obj) => this.create(obj)));
   }
-  async getAll() {
-    const json = await request(this.resourcePath);
+  async getAll(userId) {
+    const json = await request(this.resourcePath, {}, userId);
     return json.data;
   }
   async update(object) {
