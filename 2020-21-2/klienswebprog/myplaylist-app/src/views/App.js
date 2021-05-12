@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { tracksStorage } from "../api/TrackStorage";
+import { wsConnect } from "../state/messages/actions";
 import { fetchPlaylists } from "../state/playlists/actions";
 import { fetchTracks, setTracks } from "../state/tracks/actions";
 import { Home } from "./home/Home";
@@ -17,6 +18,10 @@ export function App() {
     dispatch(fetchPlaylists());
     dispatch(fetchTracks());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(wsConnect());
+  });
 
   return (
     <BrowserRouter>

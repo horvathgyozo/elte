@@ -1,8 +1,8 @@
 import { ADD_MESSAGE, DELETE_MESSAGE } from "./actions";
 
 const initialState = [
-  { id: 1, text: "Message1" },
-  { id: 2, text: "Message2" },
+  // { id: 1, text: "Message1" },
+  // { id: 2, text: "Message2" },
 ];
 
 export const messagesReducer = (state = initialState, action) => {
