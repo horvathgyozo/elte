@@ -1,0 +1,5 @@
+<div class="container">
+  <h2 class="display-2 my-3">{{ issue.id ? "Edit issue" : "New issue" }}</h2>
+
+  <app-issue-form [issue]="issue" (save)="handleSave($event)"></app-issue-form>
+</div>

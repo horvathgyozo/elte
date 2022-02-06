@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>Login</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngIf="message">{{ message }}</div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+        required
+        formControlName="email"
+        [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+      />
+      <div class="invalid-feedback">Please provide a email!</div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        required
+        formControlName="password"
+        [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+      />
+      <div class="invalid-feedback">Please provide a password!</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>
