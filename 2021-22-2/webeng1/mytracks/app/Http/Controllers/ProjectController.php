@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     public function index() {
-        $projects = [
-            [
-                'id' => 1,
-                'title' => 'Title1',
-                'description' => 'Description1',
-                'bg_url' => null,
-            ],
-            [
-                'id' => 2,
-                'title' => 'Title2',
-                'description' => 'Description2',
-                'bg_url' => 'http://clipart-library.com/images/di9KAoMjT.jpg',
-            ],
-        ];
+        $projects = Project::all();
         return view('projects.list', [
             'projects' => $projects,
         ]); // projects/lst.blade.php
     }
 
+    public function show($id) {
+        $project = Project::find($id);
+        return view('projects.show', [
+            'project' => $project,
+        ]); // projects/show.blade.php
+    }
+
     public function create() {
-        return view('projects.show'); // projects/show.blade.php
+        return view('projects.create'); // projects/show.blade.php
     }
 
     public function store(Request $request) {
@@ -37,28 +32,32 @@ class ProjectController extends Controller
             'image_url'     => 'nullable|url',
         ]);
         // dd($validated_data); // save to the database
+        Project::create($validated_data);
         return redirect('/projects'); // GET
     }
 
-    public function edit() {
-        $project = [
-            'id' => 1,
-            'name' => 'Title1',
-            'description' => 'Description1',
-            'image_url' => null,
-        ];
+    public function edit($id) {
+        $project = Project::find($id);
         return view('projects.edit', [
             'project'   => $project,
-        ]); // projects/show.blade.php
+        ]); // projects/edit.blade.php
     }
 
-    public function update(Request $request) {
+    public function update($id, Request $request) {
         $validated_data = $request->validate([
             'name'          => 'required',
             'description'   => 'nullable',
             'image_url'     => 'nullable|url',
         ]);
         // dd($validated_data); // update to the database
+        $project = Project::find($id);
+        $project->update($validated_data);
         return redirect('/projects'); // GET
+    }
+
+    public function delete($id) {
+        $project = Project::find($id);
+        $project->delete();
+        return redirect('/projects');
     }
 }
