@@ -21,8 +21,15 @@ Route::get('/', function () {
     ]); // main.blade.php
 });
 Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/projects/{id}', [ProjectController::class, 'show'])->whereUuid('id');
+
 Route::get('/projects/create', [ProjectController::class, 'create']);
 Route::post('/projects', [ProjectController::class, 'store']);
+
 Route::get('/projects/{id}/edit', [ProjectController::class, 'edit']);
 Route::put('/projects/{id}', [ProjectController::class, 'update']);
+
+// Route::get('/projects/{id}', [ProjectController::class, 'show']);
+
+Route::delete('/projects/{id}', [ProjectController::class, 'delete']);
 
