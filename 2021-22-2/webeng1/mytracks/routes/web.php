@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TrackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,13 +24,17 @@ Route::get('/', function () {
 // Route::get('/projects', function () {
 //     return view('projects.list'); // projects/lst.blade.php
 // });
-Route::get('/projects', [ProjectController::class, 'index']);
-Route::get('/projects/{id}', [ProjectController::class, 'show']);
 
-Route::get('/projects/create', [ProjectController::class, 'create']);
-Route::post('/projects', [ProjectController::class, 'store']);
+// Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+// Route::get('/projects/{project}', [ProjectController::class, 'show'])->whereUuid('project');;
 
-Route::get('/projects/{id}/edit', [ProjectController::class, 'edit']);
-Route::put('/projects/{id}', [ProjectController::class, 'update']);
+// Route::get('/projects/create', [ProjectController::class, 'create']);
+// Route::post('/projects', [ProjectController::class, 'store']);
 
-Route::delete('/projects/{id}', [ProjectController::class, 'delete']);
+// Route::get('/projects/{id}/edit', [ProjectController::class, 'edit']);
+// Route::put('/projects/{id}', [ProjectController::class, 'update']);
+
+// Route::delete('/projects/{id}', [ProjectController::class, 'delete']);
+
+Route::resource('projects', ProjectController::class);
+Route::resource('projects.tracks', TrackController::class)->shallow();

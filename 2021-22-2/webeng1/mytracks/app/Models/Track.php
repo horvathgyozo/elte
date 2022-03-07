@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Track extends Model
 {
     use HasFactory;
-    public $fillable = ['name', 'description', 'image_url'];
 
-    public function tracks()
+    public $fillable = ['name', 'filename', 'color'];
+
+    public function project()
     {
-        return $this->hasMany(Track::class);
+        return $this->belongsTo(Project::class);
     }
 }
