@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log(42);const{a:o,b:s}={a:1,b:2}})();
