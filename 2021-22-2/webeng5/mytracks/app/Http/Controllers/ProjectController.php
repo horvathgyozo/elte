@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectFormRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,7 @@ class ProjectController extends Controller
         ]); // projects/list.blade.php
     }
 
-    public function show($id) {
-        $project = Project::find($id);
+    public function show(Project $project) {
         return view('projects.show', [
             'project'   => $project,
         ]); // projects/show.blade.php
@@ -25,38 +25,23 @@ class ProjectController extends Controller
         return view('projects.create'); // projects/create.blade.php
     }
 
-    public function store(Request $request) {
-        $validated_data = $request->validate([
-            'name'          => 'required',
-            'description'   => 'nullable',
-            'image_url'     => 'nullable|url',
-        ]);
-        // dd($validated_data);
-        Project::create($validated_data);
-        return redirect('/projects'); // GET
+    public function store(ProjectFormRequest $request) {
+        Project::create($request->validated());
+        return redirect()->route('projects.index'); // GET
     }
 
-    public function edit($id) {
-        $project = Project::find($id);
+    public function edit(Project $project) {
         return view('projects.edit', [
             'project'   => $project,
         ]); // projects/edit.blade.php
     }
 
-    public function update($id, Request $request) {
-        $validated_data = $request->validate([
-            'name'          => 'required',
-            'description'   => 'nullable',
-            'image_url'     => 'nullable|url',
-        ]);
-        // dd($validated_data);
-        $project = Project::find($id);
-        $project->update($validated_data);
+    public function update(Project $project, ProjectFormRequest $request) {
+        $project->update($request->validated());
         return redirect('/projects'); // GET
     }
 
-    public function delete($id) {
-        $project = Project::find($id);
+    public function destroy(Project $project) {
         $project->delete();
         return redirect('/projects');
     }
