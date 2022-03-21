@@ -2,17 +2,17 @@
 
 namespace App\Policies;
 
-use App\Models\Track;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TrackPolicy
+class ProjectPolicy
 {
     use HandlesAuthorization;
 
-    public function access(User $user, Track $track)
+    public function access(User $user, Project $project)
     {
-        return $user->id === $track->project->user_id;
+        return $user->id === $project->user_id;
     }
 
 }
