@@ -51,7 +51,7 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
-        //
+        $this->authorize('access', $track);
     }
 
     /**
@@ -62,7 +62,10 @@ class TrackController extends Controller
      */
     public function edit(Track $track)
     {
-        //
+        $this->authorize('access', $track);
+        return view('tracks.edit', [
+            'track' => $track,
+        ]);
     }
 
     /**
@@ -72,9 +75,11 @@ class TrackController extends Controller
      * @param  \App\Models\Track  $track
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTrackRequest $request, Track $track)
+    public function update(StoreTrackRequest $request, Track $track)
     {
-        //
+        $this->authorize('access', $track);
+        $track->update($request->validated());
+        return redirect()->route('projects.show', ['project' => $track->project_id]);
     }
 
     /**
@@ -85,6 +90,6 @@ class TrackController extends Controller
      */
     public function destroy(Track $track)
     {
-        //
+        $this->authorize('access', $track);
     }
 }

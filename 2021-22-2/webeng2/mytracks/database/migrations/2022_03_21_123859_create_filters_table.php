@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\User;
+use App\Models\Filter;
+use App\Models\Track;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,16 +15,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('filters', function (Blueprint $table) {
             $table->id();
-
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('image_url')->nullable();
-            $table->foreignIdFor(User::class)->cascadeOnDelete();
-
             $table->timestamps();
+        });
 
+        Schema::create('filter_track', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Filter::class);
+            $table->foreignIdFor(Track::class);
+            $table->timestamps();
+            
+            $table->unique(['filter_id', 'track_id']);
         });
     }
 
@@ -34,6 +38,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('filter_track');
+        Schema::dropIfExists('filters');
     }
 };
