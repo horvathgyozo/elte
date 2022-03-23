@@ -16,7 +16,7 @@
 
       <div class="list-group">
         @foreach($project->tracks as $track)
-        <a href="#" class="list-group-item list-group-item-action" style="background-color: {{ $track->color }}">
+        <div class="list-group-item list-group-item-action" style="background-color: {{ $track->color }}">
           <p class="d-flex justify-content-between align-items-center">
             <span> 
               {{ $track->name }} 
@@ -29,7 +29,14 @@
             <li class="list-group-item p-1">Dapibus ac facilisis in</li>
             <li class="list-group-item p-1">Morbi leo risus</li>
           </ul>
-        </a>
+          <a href="{{ route('tracks.edit', ['track' => $track->id]) }}" class="btn btn-secondary">Edit</a>
+          <form action="{{ route('tracks.destroy', ['track' => $track->id]) }}" method="post" class="d-inline">
+            <!-- HTTP methods: get, post, put, delete -->
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-warning">Delete</button>
+          </form>
+        </div>
         @endforeach
       </div>
     </div>
