@@ -9,6 +9,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 import { IssueFormComponent } from './issue-form/issue-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IssueFilterComponent } from './issue-filter/issue-filter.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { IssueFormComponent } from './issue-form/issue-form.component';
     IssueListComponent,
     IssueDetailComponent,
     IssueFormComponent,
+    IssueFilterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
