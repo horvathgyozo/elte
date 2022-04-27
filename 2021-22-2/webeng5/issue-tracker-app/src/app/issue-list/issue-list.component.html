@@ -1,68 +1,43 @@
 <!-- issues list -->
 <h2 class="display-2 my-3">My issues</h2>
 <p>
-  <a class="btn btn-primary" routerLink="/issues/new" role="button"
-    >New issue</a
-  >
+  <a class="btn btn-primary" routerLink="/issues/new" role="button">New issue</a>
 </p>
-<div class="list-group">
-  <a
-    routerLink="/issues/1"
-    class="list-group-item list-group-item-action list-group-item-danger"
-  >
-    <div class="d-flex w-100 justify-content-between align-items-center">
-      <h5 class="mb-1">Bad machine</h5>
-      <span class="badge badge-danger">NEW</span>
-    </div>
-    <p class="mb-1">
-      Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-      risus varius blandit.
-    </p>
-    <small>
-      <i class="fas fa-map-marker-alt"></i> PC1
-      <i class="fas fa-calendar-alt"></i> 2019.01.01.
-      <i class="fas fa-comment"></i>
-      <span class="badge badge-light badge-pill">3</span>
-    </small>
-  </a>
 
-  <a
-    routerLink="/issues/2"
-    class="list-group-item list-group-item-action list-group-item-warning"
-  >
-    <div class="d-flex w-100 justify-content-between align-items-center">
-      <h5 class="mb-1">Bad machine</h5>
-      <span class="badge badge-warning">DOING</span>
+<div class="row">
+  <div class="col">
+    <app-issue-filter [status]="status" (statusChange)="handleStatusChange($event)"></app-issue-filter>
+    <div class="list-group">
+      <a
+        *ngFor="let issue of filteredIssues"
+        (click)="selectedIssue = issue"
+        class="list-group-item list-group-item-action"
+        [class.list-group-item-danger]="issue.status === 'NEW'"
+        [class.list-group-item-warning]="issue.status === 'DOING'"
+        [class.list-group-item-success]="issue.status === 'DONE'"
+      >
+        <!-- routerLink="/issues/1" -->
+        <div class="d-flex w-100 justify-content-between align-items-center">
+          <h5 class="mb-1">{{ issue.title }}</h5>
+          <span
+            class="badge"
+            [class.badge-danger]="issue.status === 'NEW'"
+            [class.badge-warning]="issue.status === 'DOING'"
+            [class.badge-success]="issue.status === 'DONE'"
+            >{{ issue.status }}</span
+          >
+        </div>
+        <p class="mb-1">{{ issue.description }}</p>
+        <small>
+          <i class="fas fa-map-marker-alt"></i> {{ issue.place }} <i class="fas fa-calendar-alt"></i> 2019.01.01.
+          <i class="fas fa-comment"></i>
+          <span class="badge badge-light badge-pill">3</span>
+        </small>
+      </a>
     </div>
-    <p class="mb-1">
-      Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-      risus varius blandit.
-    </p>
-    <small>
-      <i class="fas fa-map-marker-alt"></i> PC1
-      <i class="fas fa-calendar-alt"></i> 2019.01.01.
-      <i class="fas fa-comment"></i>
-      <span class="badge badge-light badge-pill">3</span>
-    </small>
-  </a>
-
-  <a
-    routerLink="/issues/3"
-    class="list-group-item list-group-item-action list-group-item-success"
-  >
-    <div class="d-flex w-100 justify-content-between align-items-center">
-      <h5 class="mb-1">Bad machine</h5>
-      <span class="badge badge-success">DONE</span>
-    </div>
-    <p class="mb-1">
-      Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
-      risus varius blandit.
-    </p>
-    <small>
-      <i class="fas fa-map-marker-alt"></i> PC1
-      <i class="fas fa-calendar-alt"></i> 2019.01.01.
-      <i class="fas fa-comment"></i>
-      <span class="badge badge-light badge-pill">3</span>
-    </small>
-  </a>
+    {{ selectedIssue | json }}
+  </div>
+  <div *ngIf="selectedIssue" class="col">
+    <app-issue-form [issue]="selectedIssue"></app-issue-form>
+  </div>
 </div>
