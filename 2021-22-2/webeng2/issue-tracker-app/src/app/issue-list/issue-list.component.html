@@ -15,8 +15,8 @@
         [class.list-group-item-warning]="issue.status === 'DOING'"
         [class.list-group-item-success]="issue.status === 'DONE'"
         (click)="selectedIssue = issue"
+        [routerLink]="['/issues', issue.id]"
       >
-        <!-- routerLink="/issues/1" -->
         <div class="d-flex w-100 justify-content-between align-items-center">
           <h5 class="mb-1">{{ issue.title }}</h5>
           <span
@@ -38,6 +38,6 @@
     {{ selectedIssue | json }}
   </div>
   <div *ngIf="selectedIssue" class="col">
-    <app-issue-form [issue]="selectedIssue"></app-issue-form>
+    <app-issue-form [issue]="selectedIssue" (save)="handleSave($event)"></app-issue-form>
   </div>
 </div>

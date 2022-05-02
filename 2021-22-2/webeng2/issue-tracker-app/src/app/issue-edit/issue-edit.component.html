@@ -1,0 +1,3 @@
+<h1 *ngIf="issue.id">Edit issue</h1>
+<h1 *ngIf="!issue.id">New issue</h1>
+<app-issue-form [issue]="issue" (save)="handleSave($event)"></app-issue-form>
