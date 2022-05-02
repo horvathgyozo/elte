@@ -12,6 +12,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { IssueFilterComponent } from './issue-filter/issue-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IssueEditComponent } from './issue-edit/issue-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     IssueFormComponent,
     NavBarComponent,
     IssueFilterComponent,
+    IssueEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, ReactiveFormsModule],
   providers: [],
