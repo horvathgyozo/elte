@@ -14,27 +14,24 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div
-    [ngbCollapse]="isMenuCollapsed"
-    class="collapse navbar-collapse"
-    id="navbarSupportedContent"
-  >
-    <ul class="navbar-nav mr-auto">
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" *ngIf="authService.isLoggedIn">
       <li class="nav-item">
-        <a
-          (click)="isMenuCollapsed = true"
-          class="nav-link"
-          routerLink="/issues"
-          >List issues</a
-        >
+        <a (click)="isMenuCollapsed = true" class="nav-link" routerLink="/issues">List issues</a>
       </li>
       <li class="nav-item">
-        <a
-          (click)="isMenuCollapsed = true"
-          class="nav-link"
-          routerLink="/issues/new"
-          >New issue</a
-        >
+        <a (click)="isMenuCollapsed = true" class="nav-link" routerLink="/issues/new">New issue</a>
+      </li>
+    </ul>
+    <span class="navbar-text" *ngIf="authService.isLoggedIn"> Hello, {{ authService.user.username }}! </span>
+    <ul class="navbar-nav mr-auto" *ngIf="!authService.isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto" *ngIf="authService.isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
       </li>
     </ul>
   </div>

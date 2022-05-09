@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/issues', IssueController::class)->except(['create', 'edit']);
 // Route::middleware('auth:sanctum')->resource('/issues', IssueController::class)->except(['create', 'edit']);
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});

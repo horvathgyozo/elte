@@ -15,8 +15,8 @@ export class IssueListComponent implements OnInit {
 
   constructor(private issueService: IssueService) {}
 
-  ngOnInit(): void {
-    this.issues = this.issueService.getIssues();
+  async ngOnInit() {
+    this.issues = await this.issueService.getIssues();
     this.filterIssues();
   }
 

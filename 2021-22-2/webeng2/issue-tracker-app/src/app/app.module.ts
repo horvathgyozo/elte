@@ -12,6 +12,8 @@ import { IssueFormComponent } from './issue-form/issue-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IssueFilterComponent } from './issue-filter/issue-filter.component';
 import { IssueEditComponent } from './issue-edit/issue-edit.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { IssueEditComponent } from './issue-edit/issue-edit.component';
     IssueFormComponent,
     IssueFilterComponent,
     IssueEditComponent,
+    LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

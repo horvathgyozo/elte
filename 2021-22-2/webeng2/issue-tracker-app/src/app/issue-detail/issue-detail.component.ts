@@ -12,19 +12,19 @@ export class IssueDetailComponent implements OnInit {
   issue = new Issue();
   constructor(private route: ActivatedRoute, private issueService: IssueService, private router: Router) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const urlId = this.route.snapshot.paramMap.get('id');
     if (urlId) {
       const id = parseInt(urlId);
-      const issue = this.issueService.getIssue(id);
+      const issue = await this.issueService.getIssue(id);
       if (issue) {
         this.issue = issue;
       }
     }
   }
 
-  handleDelete() {
-    this.issueService.deleteIssue(this.issue.id);
+  async handleDelete() {
+    await this.issueService.deleteIssue(this.issue.id);
     this.router.navigate(['/issues']);
   }
 }
