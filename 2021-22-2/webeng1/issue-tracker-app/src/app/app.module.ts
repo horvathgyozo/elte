@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { IssueFilterComponent } from './issue-filter/issue-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IssueEditComponent } from './issue-edit/issue-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { LoginFormComponent } from './login-form/login-form.component';
 @NgModule({
   declarations: [
@@ -27,7 +27,15 @@ import { LoginFormComponent } from './login-form/login-form.component';
     IssueEditComponent,
     LoginFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientXsrfModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

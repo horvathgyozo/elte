@@ -25,11 +25,11 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
-      await lastValueFrom(this.http.get<null>('http://localhost:8000/sanctum/csrf-cookie'));
+      await lastValueFrom(this.http.get<null>('/sanctum/csrf-cookie'));
 
       await lastValueFrom(
         this.http.post<null>(
-          'http://localhost:8000/login',
+          '/login',
           {
             email,
             password,

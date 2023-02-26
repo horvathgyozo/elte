@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class IssueService {
-  private issuesUrl = 'http://localhost:8000/api/issues';
+  private issuesUrl = '/api/issues';
 
   constructor(private http: HttpClient) {}
 
