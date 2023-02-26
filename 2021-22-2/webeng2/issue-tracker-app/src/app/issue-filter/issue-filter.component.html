@@ -1,0 +1,13 @@
+<div
+  [(ngModel)]="status"
+  (change)="handleStatusChange()"
+  class="btn-group btn-group-toggle"
+  ngbRadioGroup
+  name="radioBasic"
+>
+  <label ngbButtonLabel class="btn-primary"> <input ngbButton type="radio" value="ALL" /> ALL </label>
+  <label ngbButtonLabel class="btn-primary"> <input ngbButton type="radio" value="NEW" /> NEW </label>
+  <label ngbButtonLabel class="btn-primary"> <input ngbButton type="radio" value="DOING" /> DOING </label>
+  <label ngbButtonLabel class="btn-primary"> <input ngbButton type="radio" value="DONE" /> DONE </label>
+</div>
+{{ status }}
