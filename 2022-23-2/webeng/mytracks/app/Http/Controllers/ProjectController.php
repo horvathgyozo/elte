@@ -2,23 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     public function index() {
-        $projects = [
-            [
-                "id" => "1",
-                "name" => "project1",
-                "description" => "desc1",
-            ],
-            [
-                "id" => "2",
-                "name" => "project2",
-                "description" => "desc2",
-            ],
-        ];
+        $projects = Project::all();
         return view('projects.list', [
             "projects" => $projects,
         ]); //projects/list.blade.php
@@ -34,22 +24,18 @@ class ProjectController extends Controller
             'image_url'     => 'nullable|url',
         ]);
         // dd($validated_data);
-        // save the validated data
+        Project::create($validated_data);
         return redirect("/projects");
     }
-    public function edit() {
+
+    public function edit($id) {
         // read the project from the database
-        $project = [
-            "id" => "1",
-            "name" => "project1",
-            "description" => "desc1",
-            "image_url" => "",
-        ];
+        $project = Project::find($id);
         return view('projects.edit', [
             "project" => $project,
         ]); //projects/edit.blade.php
     }
-    public function update(Request $request) {
+    public function update(Request $request, $id) {
         $validated_data = $request->validate([
             'name'          => 'required',
             'description'   => 'nullable',
@@ -57,6 +43,22 @@ class ProjectController extends Controller
         ]);
         // dd($validated_data);
         // modify the validated data in the database
+        $project = Project::find($id);
+        $project->update($validated_data);
+
+        return redirect("/projects");
+    }
+
+    public function show($id) {
+        $project = Project::find($id);
+        return view('projects.show', [
+            "project" => $project,
+        ]); //projects/show.blade.php
+    }
+
+    public function destroy($id) {
+        $project = Project::find($id);
+        $project->delete();
         return redirect("/projects");
     }
 }
