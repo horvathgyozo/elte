@@ -13,3 +13,12 @@ console.log(
 
 const alma = "piros";
 console.log(alma);
+
+const o = {
+  a: 12,
+  b: 30,
+};
+// const a = o.a;
+// const b = o.b;
+
+const { a, b } = o;
