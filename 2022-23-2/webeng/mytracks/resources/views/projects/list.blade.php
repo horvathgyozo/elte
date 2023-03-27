@@ -25,7 +25,7 @@
       
       <div class="col-sm-3 my-3">
         <div class="card h-100">
-          <a href="new-project.html" class="btn btn-secondary h-100 pt-5">Create a new project</a>
+          <a href="{{ route("projects.create") }}" class="btn btn-secondary h-100 pt-5">Create a new project</a>
         </div>
       </div>
 

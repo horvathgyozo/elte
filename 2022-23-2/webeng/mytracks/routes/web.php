@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TrackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,15 +22,17 @@ Route::get('/', function () {
     ]); //main.blade.php
 });
 
-Route::get('/projects', [ProjectController::class, "index"]);
+// Route::get('/projects', [ProjectController::class, "index"]);
 
-Route::get('/projects/create', [ProjectController::class, "create"]);
-Route::post('/projects', [ProjectController::class, "store"]);
+// Route::get('/projects/create', [ProjectController::class, "create"])->name("projects.create");
+// Route::post('/projects', [ProjectController::class, "store"]);
 
-Route::get('/projects/{id}/edit', [ProjectController::class, "edit"]);
-Route::put('/projects/{id}', [ProjectController::class, "update"]);
+// Route::get('/projects/{project}/edit', [ProjectController::class, "edit"]);
+// Route::put('/projects/{project}', [ProjectController::class, "update"]);
 
-Route::get('/projects/{id}', [ProjectController::class, "show"]);
+// Route::get('/projects/{project}', [ProjectController::class, "show"]);
 
-Route::delete('/projects/{id}', [ProjectController::class, "destroy"]);
+// Route::delete('/projects/{project}', [ProjectController::class, "destroy"]);
 
+Route::resource('projects', ProjectController::class);
+Route::resource('projects.tracks', TrackController::class)->shallow();

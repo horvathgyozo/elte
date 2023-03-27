@@ -20,7 +20,7 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/projects">Projects</a>
           <a class="nav-item nav-link" href="/transposer">Transposer</a>
-          <a class="nav-item nav-link" href="/projects/create">New project</a>
+          <a class="nav-item nav-link" href="{{ route("projects.create") }}">New project</a>
           <a class="nav-item nav-link" href="/about">About</a>
         </div>
       </div>
