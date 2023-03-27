@@ -23,7 +23,7 @@ class StoreTrackRequest extends FormRequest
     {
         return [
             'name'      => 'required',
-            'filename'  => 'nullable|file',
+            'file'      => 'nullable|file',
             'color'     => 'required|regex:/^#[0-9a-z]{6}$/',
         ];
     }

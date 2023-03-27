@@ -55,7 +55,7 @@ class TrackController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTrackRequest $request, Track $track)
+    public function update(StoreTrackRequest $request, Track $track)
     {
         //
     }
