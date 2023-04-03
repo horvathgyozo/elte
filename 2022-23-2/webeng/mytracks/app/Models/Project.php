@@ -13,4 +13,8 @@ class Project extends Model
     public function tracks() {
         return $this->hasMany(Track::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

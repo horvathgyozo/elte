@@ -5,7 +5,7 @@
 @section('content')
     <div class="container py-3">
       <h2>{{ $project->name }}</h2>
-      <a href="new-track.html" class="btn btn-primary">Add new track</a>
+      <a href="{{ route("projects.tracks.create", ["project" => $project->id]) }}" class="btn btn-primary">Add new track</a>
       <form action="/projects/{{ $project->id }}" method="post">
         @csrf
         @method("delete")

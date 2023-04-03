@@ -34,5 +34,9 @@ Route::get('/', function () {
 
 // Route::delete('/projects/{project}', [ProjectController::class, "destroy"]);
 
-Route::resource('projects', ProjectController::class);
-Route::resource('projects.tracks', TrackController::class)->shallow();
+Route::resource('projects', ProjectController::class)->middleware('auth');
+Route::resource('projects.tracks', TrackController::class)->shallow()->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

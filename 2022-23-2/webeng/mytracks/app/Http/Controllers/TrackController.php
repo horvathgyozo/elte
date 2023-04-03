@@ -22,6 +22,7 @@ class TrackController extends Controller
      */
     public function create(Project $project)
     {
+        $this->authorize('access', $project);
         return view("tracks.create", [
             "project" => $project
         ]);
@@ -32,6 +33,7 @@ class TrackController extends Controller
      */
     public function store(Project $project, StoreTrackRequest $request)
     {
+        $this->authorize('access', $project);
         $project->tracks()->create($request->validated());
         return redirect()->route("projects.show", ["project" => $project->id]);
     }
@@ -41,6 +43,7 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
+        $this->authorize('access', $track);
         //
     }
 
@@ -49,6 +52,7 @@ class TrackController extends Controller
      */
     public function edit(Track $track)
     {
+        $this->authorize('access', $track);
         //
     }
 
@@ -57,6 +61,7 @@ class TrackController extends Controller
      */
     public function update(StoreTrackRequest $request, Track $track)
     {
+        $this->authorize('access', $track);
         //
     }
 
@@ -65,6 +70,7 @@ class TrackController extends Controller
      */
     public function destroy(Track $track)
     {
+        $this->authorize('access', $track);
         //
     }
 }
