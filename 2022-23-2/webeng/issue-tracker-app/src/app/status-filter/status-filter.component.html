@@ -1,0 +1,45 @@
+<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <input
+    type="radio"
+    class="btn-check"
+    name="statusradio"
+    id="statusradio4"
+    autocomplete="off"
+    [checked]="status === ''"
+    (click)="handleStatusClick('')"
+  />
+  <label class="btn btn-outline-primary" for="statusradio4">ALL</label>
+
+  <input
+    type="radio"
+    class="btn-check"
+    name="statusradio"
+    id="statusradio1"
+    autocomplete="off"
+    [checked]="status === 'NEW'"
+    (click)="handleStatusClick('NEW')"
+  />
+  <label class="btn btn-outline-primary" for="statusradio1">NEW</label>
+
+  <input
+    type="radio"
+    class="btn-check"
+    name="statusradio"
+    id="statusradio2"
+    autocomplete="off"
+    [checked]="status === 'DOING'"
+    (click)="handleStatusClick('DOING')"
+  />
+  <label class="btn btn-outline-primary" for="statusradio2">DOING</label>
+
+  <input
+    type="radio"
+    class="btn-check"
+    name="statusradio"
+    id="statusradio3"
+    autocomplete="off"
+    [checked]="status === 'DONE'"
+    (click)="handleStatusClick('DONE')"
+  />
+  <label class="btn btn-outline-primary" for="statusradio3">DONE</label>
+</div>

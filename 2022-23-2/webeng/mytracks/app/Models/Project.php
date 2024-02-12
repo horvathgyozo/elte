@@ -17,4 +17,12 @@ class Project extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function getProjectsWithEmptyImage() {
+        return Project::whereNull("image_url")->get();
+    }
+
+    public function getUserNameForProject() {
+        return $this->user->name;
+    }
 }

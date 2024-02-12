@@ -1,0 +1,6 @@
+<div class="container">
+  <!-- <h2>{{ issue.id > 0 ? "Edit issue" : "New issue" }}</h2> -->
+  <h2 *ngIf="issue.id === 0">New issue</h2>
+  <h2 *ngIf="issue.id > 0">Edit issue</h2>
+  <app-issue-form [issue]="issue" (save)="handleSave($event)"></app-issue-form>
+</div>

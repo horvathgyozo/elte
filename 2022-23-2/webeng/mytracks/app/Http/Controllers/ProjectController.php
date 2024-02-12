@@ -10,6 +10,7 @@ use Auth;
 class ProjectController extends Controller
 {
     public function index() {
+        // dd(Project::getProjectsWithEmptyImage());
         $projects = Auth::user()->projects; //Project::all();
         return view('projects.list', [
             "projects" => $projects,
@@ -40,6 +41,7 @@ class ProjectController extends Controller
     }
 
     public function show(Project $project) {
+        dd($project->getUserNameForProject());
         $this->authorize('access', $project);
         return view('projects.show', [
             "project" => $project,
