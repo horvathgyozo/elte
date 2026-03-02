@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Recipes - RecipeHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="navbar bg-base-100 shadow-lg">
+        <div class="flex-1">
+            <a href="index.html" class="btn btn-ghost text-xl">RecipeHub</a>
+        </div>
+        <div class="flex-none gap-2">
+            <form class="form-control">
+                <input type="text" placeholder="Search recipes..." class="input input-bordered w-64" />
+            </form>
+            <a href="categories.html" class="btn btn-ghost">Categories</a>
+            <a href="login.html" class="btn btn-ghost">Login</a>
+            <a href="register.html" class="btn btn-primary">Sign Up</a>
+        </div>
+    </div>
+
+    <div class="breadcrumbs text-sm px-4 py-4 container mx-auto">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li>Italian</li>
+        </ul>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex items-center gap-4 mb-8">
+            <div class="text-6xl">🍝</div>
+            <div>
+                <h1 class="text-4xl font-bold">Italian Recipes</h1>
+                <p class="text-lg text-gray-600">45 delicious Italian recipes</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/FF6B6B/FFFFFF?text=Pasta+Carbonara" alt="Pasta Carbonara" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Pasta Carbonara</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Italian</div>
+                        <div class="badge badge-outline">30 min</div>
+                    </div>
+                    <p>Classic Italian pasta with eggs, cheese, and bacon</p>
+                    <div class="card-actions justify-end">
+                        <a href="recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/E74C3C/FFFFFF?text=Margherita+Pizza" alt="Margherita Pizza" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Margherita Pizza</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Italian</div>
+                        <div class="badge badge-outline">45 min</div>
+                    </div>
+                    <p>Traditional pizza with tomato, mozzarella, and basil</p>
+                    <div class="card-actions justify-end">
+                        <a href="recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/C0392B/FFFFFF?text=Lasagna" alt="Lasagna" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Lasagna Bolognese</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Italian</div>
+                        <div class="badge badge-outline">90 min</div>
+                    </div>
+                    <p>Layered pasta with meat sauce and béchamel</p>
+                    <div class="card-actions justify-end">
+                        <a href="recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/EC7063/FFFFFF?text=Risotto" alt="Risotto" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Mushroom Risotto</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Italian</div>
+                        <div class="badge badge-outline">40 min</div>
+                    </div>
+                    <p>Creamy rice dish with porcini mushrooms</p>
+                    <div class="card-actions justify-end">
+                        <a href="recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/F1948A/FFFFFF?text=Tiramisu" alt="Tiramisu" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Tiramisu</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Italian</div>
+                        <div class="badge badge-outline">30 min</div>
+                    </div>
+                    <p>Coffee-flavored Italian dessert with mascarpone</p>
+                    <div class="card-actions justify-end">
+                        <a href="recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/CD6155/FFFFFF?text=Bruschetta" alt="Bruschetta" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Bruschetta</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Italian</div>
+                        <div class="badge badge-outline">15 min</div>
+                    </div>
+                    <p>Grilled bread with tomatoes and fresh basil</p>
+                    <div class="card-actions justify-end">
+                        <a href="recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="join flex justify-center mt-12">
+            <button class="join-item btn btn-active">1</button>
+            <button class="join-item btn">2</button>
+            <button class="join-item btn">3</button>
+        </div>
+    </div>
+
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content mt-16">
+        <div>
+            <p class="font-bold">RecipeHub</p> 
+            <p>Sharing delicious recipes since 2024</p>
+        </div>
+    </footer>
+</body>
+</html>

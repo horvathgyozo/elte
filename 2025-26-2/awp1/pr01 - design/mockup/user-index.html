@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeHub - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="navbar bg-base-100 shadow-lg">
+        <div class="flex-1">
+            <a href="user-index.html" class="btn btn-ghost text-xl">RecipeHub</a>
+        </div>
+        <div class="flex-none gap-2">
+            <form class="form-control">
+                <input type="text" placeholder="Search recipes..." class="input input-bordered w-64" />
+            </form>
+            <a href="user-categories.html" class="btn btn-ghost">Categories</a>
+            <a href="user-my-recipes.html" class="btn btn-ghost">My Recipes</a>
+            <a href="user-create-recipe.html" class="btn btn-primary">Create Recipe</a>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img src="https://via.placeholder.com/40/3498DB/FFFFFF?text=JD" />
+                    </div>
+                </div>
+                <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                    <li><a href="user-profile.html">Profile</a></li>
+                    <li><a href="user-my-categories.html">My Categories</a></li>
+                    <li><a href="index.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero bg-base-200 py-16">
+        <div class="hero-content text-center">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl font-bold">Welcome Back, John!</h1>
+                <p class="py-6">Ready to share a new recipe today?</p>
+                <a href="user-create-recipe.html" class="btn btn-primary btn-lg">Create New Recipe</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8">Top Recipes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/FF6B6B/FFFFFF?text=Pasta+Carbonara" alt="Pasta Carbonara" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Pasta Carbonara</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Italian</div>
+                        <div class="badge badge-outline">30 min</div>
+                    </div>
+                    <p>Classic Italian pasta with eggs, cheese, and bacon</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/4ECDC4/FFFFFF?text=Thai+Curry" alt="Thai Curry" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Thai Green Curry</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Thai</div>
+                        <div class="badge badge-outline">45 min</div>
+                    </div>
+                    <p>Spicy and aromatic Thai curry with coconut milk</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/FFE66D/333333?text=Chocolate+Cake" alt="Chocolate Cake" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Chocolate Cake</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Dessert</div>
+                        <div class="badge badge-outline">60 min</div>
+                    </div>
+                    <p>Rich and moist chocolate cake with ganache</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/95E1D3/333333?text=Caesar+Salad" alt="Caesar Salad" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Caesar Salad</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Salad</div>
+                        <div class="badge badge-outline">15 min</div>
+                    </div>
+                    <p>Fresh romaine with homemade Caesar dressing</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-3xl font-bold mb-8 mt-16">All Recipes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/F38181/FFFFFF?text=Beef+Tacos" alt="Beef Tacos" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Beef Tacos</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Mexican</div>
+                        <div class="badge badge-outline">25 min</div>
+                    </div>
+                    <p>Seasoned beef in crispy taco shells with toppings</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/AA96DA/FFFFFF?text=Sushi+Rolls" alt="Sushi Rolls" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Sushi Rolls</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Japanese</div>
+                        <div class="badge badge-outline">40 min</div>
+                    </div>
+                    <p>Homemade sushi with fresh fish and vegetables</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/FCBAD3/333333?text=Pancakes" alt="Pancakes" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Fluffy Pancakes</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Breakfast</div>
+                        <div class="badge badge-outline">20 min</div>
+                    </div>
+                    <p>Light and fluffy pancakes with maple syrup</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/A8E6CF/333333?text=Greek+Salad" alt="Greek Salad" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Greek Salad</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Greek</div>
+                        <div class="badge badge-outline">10 min</div>
+                    </div>
+                    <p>Fresh vegetables with feta and olive oil</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/FFD3B6/333333?text=BBQ+Ribs" alt="BBQ Ribs" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">BBQ Ribs</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">American</div>
+                        <div class="badge badge-outline">120 min</div>
+                    </div>
+                    <p>Tender slow-cooked ribs with BBQ sauce</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="https://via.placeholder.com/400x300/DCEDC1/333333?text=Smoothie+Bowl" alt="Smoothie Bowl" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Smoothie Bowl</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <div class="badge badge-secondary">Healthy</div>
+                        <div class="badge badge-outline">10 min</div>
+                    </div>
+                    <p>Nutritious smoothie bowl with fresh fruits</p>
+                    <div class="card-actions justify-end">
+                        <a href="user-recipe-detail.html" class="btn btn-primary btn-sm">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="join flex justify-center mt-12">
+            <button class="join-item btn btn-active">1</button>
+            <button class="join-item btn">2</button>
+            <button class="join-item btn">3</button>
+            <button class="join-item btn">4</button>
+        </div>
+    </div>
+
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content mt-16">
+        <div>
+            <p class="font-bold">RecipeHub</p> 
+            <p>Sharing delicious recipes since 2024</p>
+        </div>
+        <div>
+            <div class="grid grid-flow-col gap-4">
+                <a class="link link-hover">About</a> 
+                <a class="link link-hover">Contact</a> 
+                <a class="link link-hover">Privacy</a> 
+                <a class="link link-hover">Terms</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

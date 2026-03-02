@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Recipe - RecipeHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="navbar bg-base-100 shadow-lg">
+        <div class="flex-1">
+            <a href="user-index.html" class="btn btn-ghost text-xl">RecipeHub</a>
+        </div>
+        <div class="flex-none gap-2">
+            <form class="form-control">
+                <input type="text" placeholder="Search recipes..." class="input input-bordered w-64" />
+            </form>
+            <a href="user-categories.html" class="btn btn-ghost">Categories</a>
+            <a href="user-my-recipes.html" class="btn btn-ghost">My Recipes</a>
+            <a href="user-create-recipe.html" class="btn btn-primary">Create Recipe</a>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img src="https://via.placeholder.com/40/3498DB/FFFFFF?text=JD" />
+                    </div>
+                </div>
+                <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                    <li><a href="user-profile.html">Profile</a></li>
+                    <li><a href="user-my-categories.html">My Categories</a></li>
+                    <li><a href="index.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumbs text-sm px-4 py-4 container mx-auto">
+        <ul>
+            <li><a href="user-index.html">Home</a></li>
+            <li>Create Recipe</li>
+        </ul>
+    </div>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Create New Recipe</h1>
+
+        <form class="space-y-6">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">Basic Information</h2>
+                    
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Recipe Title</span>
+                        </label>
+                        <input type="text" placeholder="e.g., Classic Margherita Pizza" class="input input-bordered" required />
+                    </div>
+
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Description</span>
+                        </label>
+                        <textarea class="textarea textarea-bordered h-24" placeholder="Brief description of your recipe..." required></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Prep Time (minutes)</span>
+                            </label>
+                            <input type="number" placeholder="30" class="input input-bordered" required />
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Servings</span>
+                            </label>
+                            <input type="number" placeholder="4" class="input input-bordered" required />
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Difficulty</span>
+                            </label>
+                            <select class="select select-bordered">
+                                <option>Easy</option>
+                                <option>Medium</option>
+                                <option>Hard</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Recipe Image</span>
+                        </label>
+                        <input type="file" class="file-input file-input-bordered w-full" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">Categories</h2>
+                    
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Select Categories</span>
+                        </label>
+                        <div class="flex flex-wrap gap-2">
+                            <label class="cursor-pointer">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                <span class="label-text ml-2">Italian</span>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                <span class="label-text ml-2">Thai</span>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                <span class="label-text ml-2">Mexican</span>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                <span class="label-text ml-2">Desserts</span>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                <span class="label-text ml-2">Breakfast</span>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                <span class="label-text ml-2">Salads</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">Ingredients</h2>
+                    
+                    <div class="space-y-2">
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Ingredient" class="input input-bordered flex-1" />
+                            <button type="button" class="btn btn-square btn-error">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Ingredient" class="input input-bordered flex-1" />
+                            <button type="button" class="btn btn-square btn-error">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Ingredient" class="input input-bordered flex-1" />
+                            <button type="button" class="btn btn-square btn-error">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-outline btn-sm mt-2">+ Add Ingredient</button>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">Instructions</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text font-semibold">Step 1</span>
+                            </label>
+                            <textarea class="textarea textarea-bordered" placeholder="Describe this step..." rows="3"></textarea>
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text font-semibold">Step 2</span>
+                            </label>
+                            <textarea class="textarea textarea-bordered" placeholder="Describe this step..." rows="3"></textarea>
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text font-semibold">Step 3</span>
+                            </label>
+                            <textarea class="textarea textarea-bordered" placeholder="Describe this step..." rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-outline btn-sm mt-2">+ Add Step</button>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">Nutrition Information (Optional)</h2>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Calories</span>
+                            </label>
+                            <input type="number" placeholder="520" class="input input-bordered" />
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Protein (g)</span>
+                            </label>
+                            <input type="number" placeholder="28" class="input input-bordered" />
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Carbs (g)</span>
+                            </label>
+                            <input type="number" placeholder="62" class="input input-bordered" />
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Fat (g)</span>
+                            </label>
+                            <input type="number" placeholder="18" class="input input-bordered" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 justify-end">
+                <a href="user-my-recipes.html" class="btn btn-ghost">Cancel</a>
+                <a href="user-my-recipes.html" class="btn btn-primary">Create Recipe</a>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content mt-16">
+        <div>
+            <p class="font-bold">RecipeHub</p> 
+            <p>Sharing delicious recipes since 2024</p>
+        </div>
+    </footer>
+</body>
+</html>

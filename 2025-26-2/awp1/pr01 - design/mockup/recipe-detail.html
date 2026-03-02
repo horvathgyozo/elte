@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasta Carbonara - RecipeHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="navbar bg-base-100 shadow-lg">
+        <div class="flex-1">
+            <a href="index.html" class="btn btn-ghost text-xl">RecipeHub</a>
+        </div>
+        <div class="flex-none gap-2">
+            <form class="form-control">
+                <input type="text" placeholder="Search recipes..." class="input input-bordered w-64" />
+            </form>
+            <a href="categories.html" class="btn btn-ghost">Categories</a>
+            <a href="login.html" class="btn btn-ghost">Login</a>
+            <a href="register.html" class="btn btn-primary">Sign Up</a>
+        </div>
+    </div>
+
+    <div class="breadcrumbs text-sm px-4 py-4 container mx-auto">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="category-detail.html">Italian</a></li>
+            <li>Pasta Carbonara</li>
+        </ul>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2">
+                <img src="https://via.placeholder.com/800x500/FF6B6B/FFFFFF?text=Pasta+Carbonara" alt="Pasta Carbonara" class="w-full rounded-lg shadow-xl mb-6" />
+                
+                <h1 class="text-4xl font-bold mb-4">Pasta Carbonara</h1>
+                
+                <div class="flex gap-4 mb-6 flex-wrap">
+                    <div class="badge badge-lg badge-secondary">Italian</div>
+                    <div class="badge badge-lg badge-outline">30 min</div>
+                    <div class="badge badge-lg badge-outline">4 servings</div>
+                    <div class="badge badge-lg badge-outline">Medium</div>
+                </div>
+
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="avatar">
+                        <div class="w-12 rounded-full">
+                            <img src="https://via.placeholder.com/48/3498DB/FFFFFF?text=JD" />
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold">John Doe</p>
+                        <p class="text-sm text-gray-600">Posted on Jan 15, 2026</p>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none mb-8">
+                    <p class="text-lg">A classic Italian pasta dish made with eggs, cheese, pancetta, and black pepper. This authentic recipe creates a creamy sauce without using cream!</p>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl mb-8">
+                    <div class="card-body">
+                        <h2 class="card-title">Ingredients</h2>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>400g spaghetti</li>
+                            <li>200g pancetta or guanciale, diced</li>
+                            <li>4 large eggs</li>
+                            <li>100g Pecorino Romano cheese, grated</li>
+                            <li>50g Parmesan cheese, grated</li>
+                            <li>Black pepper, freshly ground</li>
+                            <li>Salt for pasta water</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl mb-8">
+                    <div class="card-body">
+                        <h2 class="card-title">Instructions</h2>
+                        <ol class="list-decimal list-inside space-y-4">
+                            <li>
+                                <strong>Prepare the sauce:</strong> In a bowl, whisk together eggs, Pecorino, Parmesan, and a generous amount of black pepper.
+                            </li>
+                            <li>
+                                <strong>Cook the pasta:</strong> Bring a large pot of salted water to boil. Cook spaghetti according to package directions until al dente.
+                            </li>
+                            <li>
+                                <strong>Cook the pancetta:</strong> While pasta cooks, sauté pancetta in a large pan over medium heat until crispy (about 5-7 minutes).
+                            </li>
+                            <li>
+                                <strong>Combine:</strong> Reserve 1 cup pasta water, then drain pasta. Add hot pasta to the pan with pancetta. Remove from heat.
+                            </li>
+                            <li>
+                                <strong>Create the sauce:</strong> Quickly stir in the egg mixture, adding pasta water gradually to create a creamy sauce. The residual heat will cook the eggs.
+                            </li>
+                            <li>
+                                <strong>Serve:</strong> Serve immediately with extra cheese and black pepper on top.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl mb-8">
+                    <div class="card-body">
+                        <h2 class="card-title">Comments</h2>
+                        
+                        <div class="alert alert-info">
+                            <span>Please <a href="login.html" class="link">login</a> to leave a comment</span>
+                        </div>
+
+                        <div class="space-y-4 mt-4">
+                            <div class="flex gap-4">
+                                <div class="avatar">
+                                    <div class="w-10 rounded-full">
+                                        <img src="https://via.placeholder.com/40/9B59B6/FFFFFF?text=SA" />
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-semibold">Sarah Anderson</p>
+                                    <p class="text-sm text-gray-600">2 days ago</p>
+                                    <p class="mt-2">This recipe is amazing! Made it last night and my family loved it. The key is to not overcook the eggs.</p>
+                                </div>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="flex gap-4">
+                                <div class="avatar">
+                                    <div class="w-10 rounded-full">
+                                        <img src="https://via.placeholder.com/40/E67E22/FFFFFF?text=MR" />
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-semibold">Mike Rodriguez</p>
+                                    <p class="text-sm text-gray-600">5 days ago</p>
+                                    <p class="mt-2">Authentic and delicious! I added a bit more pepper because I love it spicy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="card bg-base-100 shadow-xl mb-6">
+                    <div class="card-body">
+                        <h2 class="card-title">Nutrition Facts</h2>
+                        <div class="divider"></div>
+                        <div class="flex justify-between">
+                            <span>Calories</span>
+                            <span class="font-semibold">520 kcal</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Protein</span>
+                            <span class="font-semibold">28g</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Carbs</span>
+                            <span class="font-semibold">62g</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Fat</span>
+                            <span class="font-semibold">18g</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Similar Recipes</h2>
+                        <div class="space-y-4">
+                            <a href="recipe-detail.html" class="flex gap-3 hover:bg-base-200 p-2 rounded">
+                                <img src="https://via.placeholder.com/80x60/E74C3C/FFFFFF?text=Pizza" alt="Pizza" class="rounded" />
+                                <div class="flex-1">
+                                    <p class="font-semibold">Margherita Pizza</p>
+                                    <p class="text-sm text-gray-600">45 min</p>
+                                </div>
+                            </a>
+                            <a href="recipe-detail.html" class="flex gap-3 hover:bg-base-200 p-2 rounded">
+                                <img src="https://via.placeholder.com/80x60/C0392B/FFFFFF?text=Lasagna" alt="Lasagna" class="rounded" />
+                                <div class="flex-1">
+                                    <p class="font-semibold">Lasagna Bolognese</p>
+                                    <p class="text-sm text-gray-600">90 min</p>
+                                </div>
+                            </a>
+                            <a href="recipe-detail.html" class="flex gap-3 hover:bg-base-200 p-2 rounded">
+                                <img src="https://via.placeholder.com/80x60/EC7063/FFFFFF?text=Risotto" alt="Risotto" class="rounded" />
+                                <div class="flex-1">
+                                    <p class="font-semibold">Mushroom Risotto</p>
+                                    <p class="text-sm text-gray-600">40 min</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content mt-16">
+        <div>
+            <p class="font-bold">RecipeHub</p> 
+            <p>Sharing delicious recipes since 2024</p>
+        </div>
+    </footer>
+</body>
+</html>

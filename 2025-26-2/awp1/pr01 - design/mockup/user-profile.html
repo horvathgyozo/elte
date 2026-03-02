@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - RecipeHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="navbar bg-base-100 shadow-lg">
+        <div class="flex-1">
+            <a href="user-index.html" class="btn btn-ghost text-xl">RecipeHub</a>
+        </div>
+        <div class="flex-none gap-2">
+            <form class="form-control">
+                <input type="text" placeholder="Search recipes..." class="input input-bordered w-64" />
+            </form>
+            <a href="user-categories.html" class="btn btn-ghost">Categories</a>
+            <a href="user-my-recipes.html" class="btn btn-ghost">My Recipes</a>
+            <a href="user-create-recipe.html" class="btn btn-primary">Create Recipe</a>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img src="https://via.placeholder.com/40/3498DB/FFFFFF?text=JD" />
+                    </div>
+                </div>
+                <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                    <li><a href="user-profile.html">Profile</a></li>
+                    <li><a href="user-my-categories.html">My Categories</a></li>
+                    <li><a href="index.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumbs text-sm px-4 py-4 container mx-auto">
+        <ul>
+            <li><a href="user-index.html">Home</a></li>
+            <li>Profile</li>
+        </ul>
+    </div>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">My Profile</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body items-center text-center">
+                        <div class="avatar">
+                            <div class="w-32 rounded-full">
+                                <img src="https://via.placeholder.com/128/3498DB/FFFFFF?text=JD" />
+                            </div>
+                        </div>
+                        <h2 class="card-title mt-4">John Doe</h2>
+                        <p class="text-gray-600">john.doe@example.com</p>
+                        <div class="stats stats-vertical shadow mt-4 w-full">
+                            <div class="stat">
+                                <div class="stat-title">Recipes</div>
+                                <div class="stat-value text-primary">12</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-title">Categories</div>
+                                <div class="stat-value text-secondary">5</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="card bg-base-100 shadow-xl mb-6">
+                    <div class="card-body">
+                        <h2 class="card-title">Profile Information</h2>
+                        <form>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Full Name</span>
+                                </label>
+                                <input type="text" value="John Doe" class="input input-bordered" />
+                            </div>
+                            <div class="form-control mt-4">
+                                <label class="label">
+                                    <span class="label-text">Email</span>
+                                </label>
+                                <input type="email" value="john.doe@example.com" class="input input-bordered" />
+                            </div>
+                            <div class="form-control mt-4">
+                                <label class="label">
+                                    <span class="label-text">Bio</span>
+                                </label>
+                                <textarea class="textarea textarea-bordered h-24" placeholder="Tell us about yourself...">I love cooking Italian and Thai food!</textarea>
+                            </div>
+                            <div class="form-control mt-6">
+                                <button class="btn btn-primary">Update Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl mb-6">
+                    <div class="card-body">
+                        <h2 class="card-title">Profile Picture</h2>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Upload New Picture</span>
+                            </label>
+                            <input type="file" class="file-input file-input-bordered w-full" />
+                        </div>
+                        <div class="form-control mt-4">
+                            <button class="btn btn-primary">Upload Picture</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl mb-6">
+                    <div class="card-body">
+                        <h2 class="card-title">Change Password</h2>
+                        <form>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Current Password</span>
+                                </label>
+                                <input type="password" placeholder="Current password" class="input input-bordered" />
+                            </div>
+                            <div class="form-control mt-4">
+                                <label class="label">
+                                    <span class="label-text">New Password</span>
+                                </label>
+                                <input type="password" placeholder="New password" class="input input-bordered" />
+                            </div>
+                            <div class="form-control mt-4">
+                                <label class="label">
+                                    <span class="label-text">Confirm New Password</span>
+                                </label>
+                                <input type="password" placeholder="Confirm new password" class="input input-bordered" />
+                            </div>
+                            <div class="form-control mt-6">
+                                <button class="btn btn-primary">Change Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl border-error border-2">
+                    <div class="card-body">
+                        <h2 class="card-title text-error">Danger Zone</h2>
+                        <p>Once you delete your account, there is no going back. Please be certain.</p>
+                        <div class="card-actions justify-end mt-4">
+                            <button class="btn btn-error" onclick="delete_account_modal.showModal()">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <dialog id="delete_account_modal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Delete Account</h3>
+            <p class="py-4">Are you sure you want to delete your account? This action cannot be undone.</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn btn-ghost">Cancel</button>
+                    <a href="index.html" class="btn btn-error ml-2">Delete Account</a>
+                </form>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content mt-16">
+        <div>
+            <p class="font-bold">RecipeHub</p> 
+            <p>Sharing delicious recipes since 2024</p>
+        </div>
+    </footer>
+</body>
+</html>
