@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="emerald">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeBox - Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-base-200">
+
+  <!-- Navbar -->
+  <nav class="navbar bg-base-100 shadow-md px-4 lg:px-8">
+    <div class="navbar-start">
+      <a href="index.html" class="btn btn-ghost text-xl font-bold text-primary">RecipeBox</a>
+    </div>
+    <div class="navbar-end gap-2">
+      <a href="login.html" class="btn btn-outline btn-primary btn-sm">Login</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+    </div>
+  </nav>
+
+  <!-- Register Form (Laravel Breeze aligned) -->
+  <main class="flex-1 flex items-center justify-center p-4">
+    <div class="card bg-base-100 shadow-xl w-full max-w-md">
+      <div class="card-body">
+        <h2 class="text-2xl font-bold text-center mb-6">Register</h2>
+
+        <!-- method="POST" action="/register" -->
+        <form>
+          <fieldset class="fieldset mb-4">
+            <label class="fieldset-label" for="name">Name</label>
+            <input id="name" type="text" name="name" class="input w-full" required autofocus>
+          </fieldset>
+
+          <fieldset class="fieldset mb-4">
+            <label class="fieldset-label" for="email">Email</label>
+            <input id="email" type="email" name="email" class="input w-full" required>
+          </fieldset>
+
+          <fieldset class="fieldset mb-4">
+            <label class="fieldset-label" for="password">Password</label>
+            <input id="password" type="password" name="password" class="input w-full" required>
+          </fieldset>
+
+          <fieldset class="fieldset mb-6">
+            <label class="fieldset-label" for="password_confirmation">Confirm Password</label>
+            <input id="password_confirmation" type="password" name="password_confirmation" class="input w-full" required>
+          </fieldset>
+
+          <a href="dashboard.html" class="btn btn-primary w-full">Register</a>
+        </form>
+
+        <p class="text-center text-sm mt-4 text-base-content/60">
+          Already registered? <a href="login.html" class="link link-primary font-medium">Log in</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer-center bg-base-100 text-base-content p-6 border-t border-base-300">
+    <p>Copyright &copy; 2026 RecipeBox. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
