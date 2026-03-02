@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="container mx-auto p-4">
+
+      <!-- Navbar -->
+      <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="recipe-form.html">Add Recipe</a></li>
+              <li><a>Categories</a></li>
+            </ul>
+          </div>
+          <a href="index.html" class="btn btn-ghost text-xl">Recipe App</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="recipe-form.html">Add Recipe</a></li>
+            <li><a>Categories</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <a class="btn btn-primary">Login</a>
+        </div>
+      </div>
+
+      <!-- Recipe Form -->
+      <div class="max-w-3xl mx-auto mt-8">
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h1 class="card-title text-3xl mb-6">Add New Recipe</h1>
+            
+            <form class="space-y-6">
+              <!-- Recipe Name -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Recipe Name</span>
+                  <span class="label-text-alt text-error">*Required</span>
+                </label>
+                <input 
+                  type="text" 
+                  placeholder="e.g., Spaghetti Carbonara" 
+                  class="input input-bordered w-full" 
+                  required />
+              </div>
+
+              <!-- Description -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Description</span>
+                  <span class="label-text-alt text-error">*Required</span>
+                </label>
+                <textarea 
+                  class="textarea textarea-bordered h-24 w-full" 
+                  placeholder="Brief description of your recipe..."
+                  required></textarea>
+              </div>
+
+              <!-- Cooking Time -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Cooking Time (minutes)</span>
+                  <span class="label-text-alt text-error">*Required</span>
+                </label>
+                <input 
+                  type="number" 
+                  placeholder="30" 
+                  class="input input-bordered w-full" 
+                  min="1"
+                  required />
+              </div>
+
+              <!-- Ingredients -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Ingredients</span>
+                  <span class="label-text-alt">One per line</span>
+                </label>
+                <textarea 
+                  class="textarea textarea-bordered h-32" 
+                  placeholder="400g spaghetti&#10;200g pancetta&#10;4 large eggs&#10;100g Pecorino Romano cheese"
+                  required></textarea>
+                <label class="label">
+                  <span class="label-text-alt">Enter each ingredient on a new line</span>
+                </label>
+              </div>
+
+              <!-- Instructions -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Instructions</span>
+                  <span class="label-text-alt text-error">*Required</span>
+                </label>
+                <textarea 
+                  class="textarea textarea-bordered h-40" 
+                  placeholder="1. Bring a large pot of salted water to boil...&#10;2. While the pasta cooks..."
+                  required></textarea>
+                <label class="label">
+                  <span class="label-text-alt">Number each step for clarity</span>
+                </label>
+              </div>
+
+              <!-- Categories -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Categories</span>
+                  <span class="label-text-alt">Select all that apply</span>
+                </label>
+                <div class="flex flex-wrap gap-3">
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Italian</span>
+                  </label>
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Pasta</span>
+                  </label>
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Quick & Easy</span>
+                  </label>
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Vegetarian</span>
+                  </label>
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Dessert</span>
+                  </label>
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Soup</span>
+                  </label>
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Salad</span>
+                  </label>
+                  <label class="label cursor-pointer gap-2 bg-base-200 px-4 py-2 rounded-lg">
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                    <span class="label-text">Asian</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Image URL (Optional) -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Image URL</span>
+                  <span class="label-text-alt">Optional</span>
+                </label>
+                <input 
+                  type="url" 
+                  placeholder="https://example.com/image.jpg" 
+                  class="input input-bordered w-full" />
+              </div>
+
+              <!-- Form Actions -->
+              <div class="flex gap-3 justify-end pt-4">
+                <button type="button" class="btn btn-ghost">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create Recipe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

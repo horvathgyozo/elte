@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="container mx-auto p-4">
+
+      <!-- Navbar -->
+      <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="recipe-form.html">Add Recipe</a></li>
+              <li><a>Categories</a></li>
+            </ul>
+          </div>
+          <a href="index.html" class="btn btn-ghost text-xl">Recipe App</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="recipe-form.html">Add Recipe</a></li>
+            <li><a>Categories</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <a class="btn btn-primary">Login</a>
+        </div>
+      </div>
+
+      <!-- Recipe Detail -->
+      <div class="max-w-4xl mx-auto mt-8">
+        <div class="card bg-base-100 shadow-xl">
+          <figure class="h-96">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+              alt="Recipe"
+              class="w-full h-full object-cover" />
+          </figure>
+          <div class="card-body">
+            <!-- Title and Categories -->
+            <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+              <div class="flex-1">
+                <h1 class="card-title text-3xl mb-2">Spaghetti Carbonara</h1>
+                <div class="flex flex-wrap gap-2">
+                  <div class="badge badge-primary">Italian</div>
+                  <div class="badge badge-primary">Pasta</div>
+                  <div class="badge badge-primary">Quick & Easy</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="text-lg font-semibold">30 min</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-2">Description</h2>
+              <p class="text-base-content/80">
+                A classic Italian pasta dish made with eggs, cheese, pancetta, and black pepper. 
+                This creamy and delicious recipe is perfect for a quick weeknight dinner and uses 
+                simple ingredients to create an authentic Roman carbonara.
+              </p>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-3">Ingredients</h2>
+              <ul class="list-disc list-inside space-y-2 text-base-content/80">
+                <li>400g spaghetti</li>
+                <li>200g pancetta or guanciale, diced</li>
+                <li>4 large eggs</li>
+                <li>100g Pecorino Romano cheese, grated</li>
+                <li>50g Parmesan cheese, grated</li>
+                <li>Freshly ground black pepper</li>
+                <li>Salt for pasta water</li>
+              </ul>
+            </div>
+
+            <!-- Instructions -->
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-3">Instructions</h2>
+              <div class="space-y-4">
+                <div class="flex gap-3">
+                  <div class="badge badge-neutral">1</div>
+                  <p class="text-base-content/80 flex-1">
+                    Bring a large pot of salted water to boil. Cook the spaghetti according to package directions until al dente.
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <div class="badge badge-neutral">2</div>
+                  <p class="text-base-content/80 flex-1">
+                    While the pasta cooks, fry the pancetta in a large skillet over medium heat until crispy, about 5-7 minutes.
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <div class="badge badge-neutral">3</div>
+                  <p class="text-base-content/80 flex-1">
+                    In a bowl, whisk together the eggs, Pecorino Romano, Parmesan, and plenty of black pepper.
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <div class="badge badge-neutral">4</div>
+                  <p class="text-base-content/80 flex-1">
+                    Reserve 1 cup of pasta water before draining. Drain the spaghetti and add it to the skillet with pancetta off the heat.
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <div class="badge badge-neutral">5</div>
+                  <p class="text-base-content/80 flex-1">
+                    Quickly pour the egg mixture over the hot pasta, tossing constantly. Add reserved pasta water little by little to create a creamy sauce. Serve immediately with extra cheese and pepper.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="card-actions justify-end mt-6">
+              <button class="btn btn-outline">Edit</button>
+              <button class="btn btn-error">Delete</button>
+              <button class="btn btn-primary">Save to Favorites</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
