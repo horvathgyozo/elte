@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="emerald">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeBox Admin - Recipes</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-base-200">
+
+  <!-- Navbar (Admin) -->
+  <nav class="navbar bg-base-100 shadow-md px-4 lg:px-8">
+    <div class="navbar-start">
+      <a href="dashboard.html" class="btn btn-ghost text-xl font-bold text-primary">RecipeBox</a>
+      <span class="badge badge-error badge-sm ml-2">ADMIN</span>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-1">
+        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="admin-users.html">Users</a></li>
+        <li><a href="admin-recipes.html" class="menu-active font-medium">Recipes</a></li>
+        <li><a href="admin-categories.html">Categories</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar avatar-placeholder">
+          <div class="bg-error text-white rounded-full w-10"><span class="text-lg">A</span></div>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg mt-2">
+          <li class="menu-title"><span>Admin User</span></li>
+          <li><a href="admin-users.html">Users</a></li>
+          <li><a href="admin-recipes.html">Recipes</a></li>
+          <li><a href="admin-categories.html">Categories</a></li>
+          <li class="border-t border-base-300 mt-1 pt-1"><a href="index.html" class="text-error">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="px-4 lg:px-8 py-8 max-w-6xl mx-auto w-full flex-1">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <h1 class="text-2xl font-bold">Recipe Management</h1>
+      <!-- method="GET" action="/admin/recipes" -->
+      <form class="flex gap-2">
+        <select name="category" class="select select-sm">
+          <option value="">All Categories</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="dessert">Dessert</option>
+          <option value="vegan">Vegan</option>
+        </select>
+        <input type="text" name="search" placeholder="Search recipes..." class="input input-sm w-48">
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+      </form>
+    </div>
+
+    <div class="card bg-base-100 shadow-md">
+      <div class="card-body p-0">
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Created</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-medium">Grilled Chicken Salad</td>
+                <td>John Doe</td>
+                <td><span class="badge badge-sm badge-primary">Lunch</span></td>
+                <td>Jan 20, 2026</td>
+                <td class="text-right">
+                  <a href="edit-recipe.html" class="btn btn-ghost btn-xs">Edit</a>
+                  <button class="btn btn-ghost btn-xs text-error">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-medium">Margherita Pizza</td>
+                <td>Jane Smith</td>
+                <td><span class="badge badge-sm badge-primary">Dinner</span></td>
+                <td>Feb 1, 2026</td>
+                <td class="text-right">
+                  <a href="edit-recipe.html" class="btn btn-ghost btn-xs">Edit</a>
+                  <button class="btn btn-ghost btn-xs text-error">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-medium">French Toast</td>
+                <td>John Doe</td>
+                <td><span class="badge badge-sm badge-primary">Breakfast</span></td>
+                <td>Jan 25, 2026</td>
+                <td class="text-right">
+                  <a href="edit-recipe.html" class="btn btn-ghost btn-xs">Edit</a>
+                  <button class="btn btn-ghost btn-xs text-error">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-medium">Chocolate Lava Cake</td>
+                <td>Emily Wilson</td>
+                <td><span class="badge badge-sm badge-primary">Dessert</span></td>
+                <td>Feb 3, 2026</td>
+                <td class="text-right">
+                  <a href="edit-recipe.html" class="btn btn-ghost btn-xs">Edit</a>
+                  <button class="btn btn-ghost btn-xs text-error">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-medium">Rainbow Veggie Bowl</td>
+                <td>Sarah Brown</td>
+                <td><span class="badge badge-sm badge-primary">Lunch</span></td>
+                <td>Feb 6, 2026</td>
+                <td class="text-right">
+                  <a href="edit-recipe.html" class="btn btn-ghost btn-xs">Edit</a>
+                  <button class="btn btn-ghost btn-xs text-error">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center mt-6">
+      <div class="join">
+        <button class="join-item btn btn-sm btn-active">1</button>
+        <button class="join-item btn btn-sm">2</button>
+        <button class="join-item btn btn-sm">3</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer-center bg-base-100 text-base-content p-6 border-t border-base-300">
+    <p>Copyright &copy; 2026 RecipeBox Admin. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

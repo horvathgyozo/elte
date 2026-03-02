@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="emerald">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeBox - Favourites</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-base-200">
+
+  <!-- Navbar (Authenticated) -->
+  <nav class="navbar bg-base-100 shadow-md px-4 lg:px-8">
+    <div class="navbar-start">
+      <a href="dashboard.html" class="btn btn-ghost text-xl font-bold text-primary">RecipeBox</a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-1">
+        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="my-recipes.html">My Recipes</a></li>
+        <li><a href="favourites.html" class="menu-active font-medium">Favourites</a></li>
+        <li><a href="my-categories.html">My Categories</a></li>
+        <li><a href="add-recipe.html">+ Add Recipe</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar avatar-placeholder">
+          <div class="bg-primary text-white rounded-full w-10"><span class="text-lg">JD</span></div>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg mt-2">
+          <li class="menu-title"><span>John Doe</span></li>
+          <li><a href="my-recipes.html">My Recipes</a></li>
+          <li><a href="favourites.html">Favourites</a></li>
+          <li><a href="my-categories.html">My Categories</a></li>
+          <li class="border-t border-base-300 mt-1 pt-1"><a href="index.html" class="text-error">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Favourites -->
+  <main class="px-4 lg:px-8 py-8 max-w-7xl mx-auto w-full flex-1">
+    <h1 class="text-2xl font-bold mb-8">Favourite Recipes</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <div class="card bg-base-100 shadow-md">
+        <figure><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=300&fit=crop" alt="Chocolate Lava Cake" class="w-full h-48 object-cover"></figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base">Chocolate Lava Cake</h3>
+          <span class="badge badge-sm badge-primary">Dessert</span>
+          <div class="card-actions justify-between items-center mt-2">
+            <a href="recipe-detail.html" class="btn btn-primary btn-sm">View</a>
+            <button class="btn btn-outline btn-error btn-sm">Unfavourite</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-md">
+        <figure><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400&h=300&fit=crop" alt="Gourmet Smash Burger" class="w-full h-48 object-cover"></figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base">Gourmet Smash Burger</h3>
+          <div class="flex gap-1 flex-wrap">
+            <span class="badge badge-sm badge-primary">Dinner</span>
+            <span class="badge badge-sm badge-accent">Quick Meals</span>
+          </div>
+          <div class="card-actions justify-between items-center mt-2">
+            <a href="recipe-detail.html" class="btn btn-primary btn-sm">View</a>
+            <button class="btn btn-outline btn-error btn-sm">Unfavourite</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-md">
+        <figure><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=300&fit=crop" alt="Rainbow Veggie Bowl" class="w-full h-48 object-cover"></figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base">Rainbow Veggie Bowl</h3>
+          <div class="flex gap-1 flex-wrap">
+            <span class="badge badge-sm badge-primary">Lunch</span>
+            <span class="badge badge-sm badge-accent">Vegan</span>
+          </div>
+          <div class="card-actions justify-between items-center mt-2">
+            <a href="recipe-detail.html" class="btn btn-primary btn-sm">View</a>
+            <button class="btn btn-outline btn-error btn-sm">Unfavourite</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-md">
+        <figure><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop" alt="Pan-Seared Steak" class="w-full h-48 object-cover"></figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base">Pan-Seared Steak</h3>
+          <span class="badge badge-sm badge-primary">Dinner</span>
+          <div class="card-actions justify-between items-center mt-2">
+            <a href="recipe-detail.html" class="btn btn-primary btn-sm">View</a>
+            <button class="btn btn-outline btn-error btn-sm">Unfavourite</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer-center bg-base-100 text-base-content p-6 mt-8 border-t border-base-300">
+    <p>Copyright &copy; 2026 RecipeBox. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

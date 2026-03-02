@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="emerald">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeBox Admin - Categories</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-base-200">
+
+  <!-- Navbar (Admin) -->
+  <nav class="navbar bg-base-100 shadow-md px-4 lg:px-8">
+    <div class="navbar-start">
+      <a href="dashboard.html" class="btn btn-ghost text-xl font-bold text-primary">RecipeBox</a>
+      <span class="badge badge-error badge-sm ml-2">ADMIN</span>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-1">
+        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="admin-users.html">Users</a></li>
+        <li><a href="admin-recipes.html">Recipes</a></li>
+        <li><a href="admin-categories.html" class="menu-active font-medium">Categories</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar avatar-placeholder">
+          <div class="bg-error text-white rounded-full w-10"><span class="text-lg">A</span></div>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg mt-2">
+          <li class="menu-title"><span>Admin User</span></li>
+          <li><a href="admin-users.html">Users</a></li>
+          <li><a href="admin-recipes.html">Recipes</a></li>
+          <li><a href="admin-categories.html">Categories</a></li>
+          <li class="border-t border-base-300 mt-1 pt-1"><a href="index.html" class="text-error">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="px-4 lg:px-8 py-8 max-w-4xl mx-auto w-full flex-1">
+    <h1 class="text-2xl font-bold mb-6">Category Management</h1>
+
+    <!-- Add New Category -->
+    <div class="card bg-base-100 shadow-md mb-8">
+      <div class="card-body p-4">
+        <h2 class="font-semibold mb-3">Add New Category</h2>
+        <!-- method="POST" action="/admin/categories" -->
+        <form class="flex gap-2">
+          <input type="text" name="name" placeholder="Category name" class="input input-sm flex-1" required>
+          <button type="submit" class="btn btn-primary btn-sm">Add</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- All Categories (across all users) -->
+    <div class="card bg-base-100 shadow-md">
+      <div class="card-body p-0">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Owner</th>
+              <th>Recipes</th>
+              <th class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">Breakfast</td>
+              <td>John Doe</td>
+              <td>18</td>
+              <td class="text-right">
+                <a href="admin-edit-category.html" class="btn btn-ghost btn-xs">Edit</a>
+                <button class="btn btn-ghost btn-xs text-error">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-medium">Lunch</td>
+              <td>Jane Smith</td>
+              <td>24</td>
+              <td class="text-right">
+                <a href="admin-edit-category.html" class="btn btn-ghost btn-xs">Edit</a>
+                <button class="btn btn-ghost btn-xs text-error">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-medium">Dinner</td>
+              <td>John Doe</td>
+              <td>31</td>
+              <td class="text-right">
+                <a href="admin-edit-category.html" class="btn btn-ghost btn-xs">Edit</a>
+                <button class="btn btn-ghost btn-xs text-error">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-medium">Dessert</td>
+              <td>Emily Wilson</td>
+              <td>15</td>
+              <td class="text-right">
+                <a href="admin-edit-category.html" class="btn btn-ghost btn-xs">Edit</a>
+                <button class="btn btn-ghost btn-xs text-error">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-medium">Vegan</td>
+              <td>Sarah Brown</td>
+              <td>12</td>
+              <td class="text-right">
+                <a href="admin-edit-category.html" class="btn btn-ghost btn-xs">Edit</a>
+                <button class="btn btn-ghost btn-xs text-error">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-medium">Italian</td>
+              <td>Jane Smith</td>
+              <td>14</td>
+              <td class="text-right">
+                <a href="admin-edit-category.html" class="btn btn-ghost btn-xs">Edit</a>
+                <button class="btn btn-ghost btn-xs text-error">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer-center bg-base-100 text-base-content p-6 border-t border-base-300">
+    <p>Copyright &copy; 2026 RecipeBox Admin. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
