@@ -18,8 +18,15 @@ class RecipeController extends Controller
         return view('recipes.create'); 
     }
     public function store(Request $request) {
-        $request->validate([
-            "title" => "required|min:3"
+        $validated = $request->validate([
+            "title" => "required|min:3",
+            "description" => "required|min:10",
+            "ingredients" => "required|min:10",
+            "instructions" => "required|min:10",
+            "cooking_time" => "required|numeric|min:1",
+            "difficulty" => "required|in:easy,medium,hard",
+            // "image" => "nullable|image|max:2048",
+            // "categories" => "array"
         ]);
         // dd("hello");
         return redirect()->route("recipes.detail", ["id" => 42]);
