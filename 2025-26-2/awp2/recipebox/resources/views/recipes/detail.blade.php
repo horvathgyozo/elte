@@ -6,7 +6,7 @@
     <div class="breadcrumbs text-sm">
       <ul>
         <li><a href="index.html">Recipes</a></li>
-        <li class="text-base-content/60">Grilled Chicken Salad</li>
+        <li class="text-base-content/60">{{$recipe->title}}</li>
       </ul>
     </div>
   </div>
@@ -19,7 +19,7 @@
 
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
       <div>
-        <h1 class="text-3xl font-bold mb-3">Grilled Chicken Salad</h1>
+        <h1 class="text-3xl font-bold mb-3">{{$recipe->title}}</h1>
         <div class="flex gap-2 flex-wrap">
           <span class="badge badge-primary">Lunch</span>
           <span class="badge badge-accent">Healthy</span>

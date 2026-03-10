@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
     public function index() {
+        $recipes = Recipe::all();
         return view('landing', [
             "foo" => 42,
+            "recipes" => $recipes,
         ]); // landing.blade.php
     }
-    public function show() {
-        return view('recipes.detail'); 
+    public function show($id) {
+        $recipe = Recipe::find($id);
+        return view('recipes.detail', [
+            "recipe" => $recipe,
+        ]); 
     }
     public function create() {
         return view('recipes.create'); 
@@ -29,6 +35,15 @@ class RecipeController extends Controller
             // "categories" => "array"
         ]);
         // dd("hello");
-        return redirect()->route("recipes.detail", ["id" => 42]);
+        // save to database
+        $recipe = Recipe::create($validated);
+        return redirect()->route("recipes.detail", ["id" => $recipe->id]);
+    }
+
+    public function edit($id) {
+        $recipe = Recipe::find($id);
+        return view('recipes.edit', [
+            "recipe" => $recipe,
+        ]); 
     }
 }
