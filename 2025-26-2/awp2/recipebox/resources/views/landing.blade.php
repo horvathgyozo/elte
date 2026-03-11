@@ -44,8 +44,10 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
       @foreach($recipes as $recipe)
-      <a href="{{ route('recipes.detail', ['id' => $recipe->id]) }}" class="card bg-base-100 shadow-md hover:shadow-xl transition-shadow">
-        <figure><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop" alt="Grilled Chicken Salad" class="w-full h-48 object-cover"></figure>
+      <div class="card bg-base-100 shadow-md hover:shadow-xl transition-shadow">
+        <a href="{{ route('recipes.show', ['recipe' => $recipe]) }}">
+          <figure><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop" alt="Grilled Chicken Salad" class="w-full h-48 object-cover"></figure>
+        </a>
         <div class="card-body p-4">
           <h3 class="card-title text-base">{{$recipe->title}}</h3>
           <div class="flex gap-1 flex-wrap">
@@ -53,8 +55,13 @@
             <span class="badge badge-sm badge-accent">Healthy</span>
           </div>
           <p class="text-sm text-base-content/60 mt-1">{{$recipe->description}}</p>
+          <form action="{{ route('recipes.destroy', ['recipe' => $recipe->id]) }}" method="post">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-outline btn-error btn-sm">Delete</button>
+          </form>
         </div>
-      </a>
+      </div>
       @endforeach
 
     </div>
