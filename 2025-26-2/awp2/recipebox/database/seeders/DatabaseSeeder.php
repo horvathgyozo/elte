@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // DB::truncate("recipes");
+        $this->call(CategorySeeder::class);
         $this->call(RecipeSeeder::class);
 
         // User::factory(10)->create();
