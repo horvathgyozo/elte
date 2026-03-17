@@ -29,7 +29,7 @@ class RecipeFormRequest extends FormRequest
             "cooking_time" => "required|numeric|min:1",
             "difficulty" => "required|in:easy,medium,hard",
             // "image" => "nullable|image|max:2048",
-            // "categories" => "array"
+            "categories" => "array"
         ];
     }
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeFormRequest;
-use App\Models\Recipe;
+        use App\Models\Category;
+        use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -22,7 +23,9 @@ class RecipeController extends Controller
         ]);
     }
     public function create() {
-        return view('recipes.create');
+        return view('recipes.create', [
+            "categories" => Category::all(),
+        ]);
     }
     public function store(RecipeFormRequest $request) {
         // $validated = $request->validate([
@@ -39,12 +42,16 @@ class RecipeController extends Controller
         // dd($validated);
         // save to db
         $savedRecipe = Recipe::create($validated);
+        if (isset($validated['categories'])) {
+            $savedRecipe->categories()->attach($validated['categories']);
+        }
         return redirect()->route('recipes.show', ['recipe' => $savedRecipe->id]);
     }
     public function edit(Recipe $recipe) {
         // $recipe = Recipe::find($id);
         return view('recipes.edit', [
             "recipe" => $recipe,
+            "categories" => Category::all(),
         ]);
     }
     public function update(RecipeFormRequest $request, Recipe $recipe) {
@@ -63,6 +70,11 @@ class RecipeController extends Controller
         // save to db
         // $recipe = Recipe::find($id);
         $recipe->update($validated);
+        if (isset($validated['categories'])) {
+            $recipe->categories()->sync($validated['categories']);
+        } else {
+            $recipe->categories()->detach();
+        }
         return redirect()->route('recipes.show', ['recipe' => $recipe->id]);
     }
     public function destroy(Recipe $recipe) {

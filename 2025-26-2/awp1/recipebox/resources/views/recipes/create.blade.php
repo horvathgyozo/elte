@@ -51,30 +51,12 @@
           @error('categories')
           <p class="text-error text-sm w-full">{{$message}}</p>
           @enderror
+          @foreach($categories as $category)
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="categories[]" value="breakfast" class="checkbox checkbox-sm checkbox-primary" {{ in_array('breakfast', old('categories', [])) ? 'checked' : '' }}>
-            <span class="text-sm">Breakfast</span>
+            <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="checkbox checkbox-sm checkbox-primary" {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+            <span class="text-sm">{{ $category->name }}</span>
           </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="categories[]" value="lunch" class="checkbox checkbox-sm checkbox-primary" {{ in_array('lunch', old('categories', [])) ? 'checked' : '' }}>
-            <span class="text-sm">Lunch</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="categories[]" value="dinner" class="checkbox checkbox-sm checkbox-primary" {{ in_array('dinner', old('categories', [])) ? 'checked' : '' }}>
-            <span class="text-sm">Dinner</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="categories[]" value="dessert" class="checkbox checkbox-sm checkbox-primary" {{ in_array('dessert', old('categories', [])) ? 'checked' : '' }}>
-            <span class="text-sm">Dessert</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="categories[]" value="vegan" class="checkbox checkbox-sm checkbox-primary" {{ in_array('vegan', old('categories', [])) ? 'checked' : '' }}>
-            <span class="text-sm">Vegan</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="categories[]" value="quick-meals" class="checkbox checkbox-sm checkbox-primary" {{ in_array('quick-meals', old('categories', [])) ? 'checked' : '' }}>
-            <span class="text-sm">Quick Meals</span>
-          </label>
+          @endforeach
         </div>
       </fieldset>
 

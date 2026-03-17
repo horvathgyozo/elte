@@ -21,12 +21,15 @@
       <div>
         <h1 class="text-3xl font-bold mb-3">{{$recipe->title}}</h1>
         <div class="flex gap-2 flex-wrap">
-          <span class="badge badge-primary">Lunch</span>
-          <span class="badge badge-accent">Healthy</span>
+          @foreach($recipe->categories as $category)  
+          <span class="badge badge-accent">{{$category->name}}</span>
+          @endforeach
+
           <span class="badge badge-outline">30 min</span>
           <span class="badge badge-outline">Easy</span>
         </div>
       </div>
+      <a href="{{ route('recipes.edit', ['recipe' => $recipe->id]) }}" class="btn btn-primary">Edit Recipe</a>
       <div>
         <button class="btn btn-outline btn-sm" disabled title="Login to add to favourites">Add to Favourites</button>
         <p class="text-xs text-base-content/50 mt-1">Login to save recipes</p>

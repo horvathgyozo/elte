@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("instructions");
             $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->integer("cooking_time");
+            $table->softDeletes();
 
             $table->timestamps();
         });
