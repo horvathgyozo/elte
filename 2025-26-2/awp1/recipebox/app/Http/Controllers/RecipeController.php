@@ -6,11 +6,12 @@ use App\Http\Requests\RecipeFormRequest;
         use App\Models\Category;
         use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
     public function index() {
-        $recipes = Recipe::all();
+        $recipes = Auth::user()->recipes;
         return view('landing', [
             "recipes" => $recipes,
             "numberOfRecipes" => 777,
