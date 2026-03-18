@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         // DB::truncate("recipes");
         $this->call(CategorySeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(RecipeSeeder::class);
 
         // User::factory(10)->create();
