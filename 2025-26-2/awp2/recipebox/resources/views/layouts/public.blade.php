@@ -8,6 +8,7 @@
 </head>
 <body class="min-h-screen flex flex-col bg-base-200">
 
+  @guest
   <!-- Navbar (Guest) -->
   <nav class="navbar bg-base-100 shadow-md px-4 lg:px-8">
     <div class="navbar-start">
@@ -18,6 +19,44 @@
       <a href="register.html" class="btn btn-primary btn-sm">Register</a>
     </div>
   </nav>
+  @endguest
+
+  @auth
+  <!-- Navbar (Authenticated) -->
+  <nav class="navbar bg-base-100 shadow-md px-4 lg:px-8">
+    <div class="navbar-start">
+      <a href="dashboard.html" class="btn btn-ghost text-xl font-bold text-primary">RecipeBox</a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-1">
+        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="my-recipes.html">My Recipes</a></li>
+        <li><a href="favourites.html">Favourites</a></li>
+        <li><a href="my-categories.html" class="menu-active font-medium">My Categories</a></li>
+        <li><a href="{{ route('recipes.create') }}">+ Add Recipe</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar avatar-placeholder">
+          <div class="bg-primary text-white rounded-full w-10"><span class="text-lg">JD</span></div>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg mt-2">
+          <li class="menu-title"><span>{{ Auth::user()->name }}</span></li>
+          <li><a href="my-recipes.html">My Recipes</a></li>
+          <li><a href="favourites.html">Favourites</a></li>
+          <li><a href="my-categories.html">My Categories</a></li>
+          <li class="border-t border-base-300 mt-1 pt-1">
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button type="submit" class="w-full text-left">Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  @endauth
 
   @yield("content")
 
