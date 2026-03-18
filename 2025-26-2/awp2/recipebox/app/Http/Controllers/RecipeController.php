@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeFormRequest;
+use App\Models\Category;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class RecipeController extends Controller
         ]); 
     }
     public function create() {
-        return view('recipes.create'); 
+        return view('recipes.create', [
+            "categories" => Category::all(),
+        ]); 
     }
     public function store(RecipeFormRequest $request) {
         // $validated = $request->validate([
@@ -38,6 +41,9 @@ class RecipeController extends Controller
         // dd("hello");
         // save to database
         $recipe = Recipe::create($request->validated());
+        if ($request->validated('categories')) {
+            $recipe->categories()->attach($request->validated('categories'));
+        }
         return redirect()->route("recipes.show", ["recipe" => $recipe->id]);
     }
 
@@ -45,6 +51,7 @@ class RecipeController extends Controller
         // $recipe = Recipe::find($id);
         return view('recipes.edit', [
             "recipe" => $recipe,
+            "categories" => Category::all(),
         ]); 
     }
     public function update(RecipeFormRequest $request, Recipe $recipe) {
@@ -61,12 +68,17 @@ class RecipeController extends Controller
         // update in database
         // $recipe = Recipe::find($id);
         $recipe->update($request->validated());
+        if ($request->validated('categories')) {
+            $recipe->categories()->sync($request->validated('categories'));
+        } else {
+            $recipe->categories()->detach();
+        }
         return redirect()->route("recipes.show", ["recipe" => $recipe->id]);
     }
 
     public function destroy(Recipe $recipe) {
         // $recipe = Recipe::find($id);
         $recipe->delete();
-        return redirect()->route("recipes.list");
+        return redirect()->route("recipes.index");
     }
 }
