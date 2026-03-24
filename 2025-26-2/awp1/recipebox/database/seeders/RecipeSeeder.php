@@ -27,10 +27,10 @@ class RecipeSeeder extends Seeder
 
         $users->each(function ($user) use ($categories) {
              Recipe::factory()->count(10)->create(['user_id' => $user->id])
-            ->each(function ($recipe) use ($categories) {
-                $randomCategories = $categories->random(rand(1, 3))->pluck('id');
-                $recipe->categories()->attach($randomCategories);
-            });
+                ->each(function ($recipe) use ($categories) {
+                    $randomCategories = $categories->random(rand(1, 3))->pluck('id');
+                    $recipe->categories()->attach($randomCategories);
+                });
         });
 
         

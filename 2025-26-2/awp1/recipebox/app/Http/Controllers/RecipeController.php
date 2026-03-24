@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecipeFormRequest;
-        use App\Models\Category;
-        use App\Models\Recipe;
+use App\Models\Category;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class RecipeController extends Controller
 {
@@ -18,7 +19,7 @@ class RecipeController extends Controller
         ]);
     }
     public function show(Recipe $recipe) {
-        // $recipe = Recipe::findOrFail($id);
+        Gate::authorize('access-recipe', $recipe);
         return view('recipes.detail', [
             "recipe" => $recipe,
         ]);
@@ -29,26 +30,22 @@ class RecipeController extends Controller
         ]);
     }
     public function store(RecipeFormRequest $request) {
-        // $validated = $request->validate([
-        //     "title" => "required|min:3",
-        //     "description" => "required|min:10",
-        //     "ingredients" => "required|min:10",
-        //     "instructions" => "required|min:10",
-        //     "cooking_time" => "required|numeric|min:1",
-        //     "difficulty" => "required|in:easy,medium,hard",
-        //     // "image" => "nullable|image|max:2048",
-        //     // "categories" => "array"
-        // ]);
         $validated = $request->validated();
-        // dd($validated);
         // save to db
-        $savedRecipe = Recipe::create($validated);
+        // $savedRecipe = Recipe::create($validated);
+        // $recipe = new Recipe($validated);
+        // $savedRecipe = Auth::user()->recipes()->save($recipe);
+        $path = $request->file('image')->store('images');
+        $validated['image_path'] = $path;
+        $savedRecipe = Auth::user()->recipes()->create($validated);
+        // $savedRecipe = auth()->user()->recipes()->create($validated);
         if (isset($validated['categories'])) {
             $savedRecipe->categories()->attach($validated['categories']);
         }
         return redirect()->route('recipes.show', ['recipe' => $savedRecipe->id]);
     }
     public function edit(Recipe $recipe) {
+        Gate::authorize('access-recipe', $recipe);
         // $recipe = Recipe::find($id);
         return view('recipes.edit', [
             "recipe" => $recipe,
@@ -56,18 +53,8 @@ class RecipeController extends Controller
         ]);
     }
     public function update(RecipeFormRequest $request, Recipe $recipe) {
-        // $validated = $request->validate([
-        //     "title" => "required|min:3",
-        //     "description" => "required|min:10",
-        //     "ingredients" => "required|min:10",
-        //     "instructions" => "required|min:10",
-        //     "cooking_time" => "required|numeric|min:1",
-        //     "difficulty" => "required|in:easy,medium,hard",
-        //     // "image" => "nullable|image|max:2048",
-        //     // "categories" => "array"
-        // ]);
+        Gate::authorize('access-recipe', $recipe);
         $validated = $request->validated();
-        // dd($validated);
         // save to db
         // $recipe = Recipe::find($id);
         $recipe->update($validated);
@@ -79,6 +66,7 @@ class RecipeController extends Controller
         return redirect()->route('recipes.show', ['recipe' => $recipe->id]);
     }
     public function destroy(Recipe $recipe) {
+        Gate::authorize('access-recipe', $recipe);
         // $recipe = Recipe::find($id);
         $recipe->delete();
 

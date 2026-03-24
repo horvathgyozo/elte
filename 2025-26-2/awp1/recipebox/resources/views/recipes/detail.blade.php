@@ -14,7 +14,7 @@
   <!-- Recipe Detail -->
   <main class="px-4 lg:px-8 max-w-5xl mx-auto w-full flex-1 pb-12">
     <figure class="rounded-xl overflow-hidden mb-8 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&h=450&fit=crop" alt="Grilled Chicken Salad" class="w-full h-64 md:h-96 object-cover">
+      <img src="{{ $recipe->image_path ? asset('storage/' . $recipe->image_path) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&h=450&fit=crop' }}" alt="Grilled Chicken Salad" class="w-full h-64 md:h-96 object-cover">
     </figure>
 
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
@@ -45,16 +45,9 @@
           <div class="card-body">
             <h2 class="card-title text-lg mb-4">Ingredients</h2>
             <ul class="space-y-2 text-sm">
-              <li>2 chicken breasts</li>
-              <li>4 cups mixed greens</li>
-              <li>1 cup cherry tomatoes</li>
-              <li>1 cucumber, sliced</li>
-              <li>1/4 red onion, thinly sliced</li>
-              <li>1/4 cup feta cheese</li>
-              <li>2 tbsp olive oil</li>
-              <li>1 tbsp lemon juice</li>
-              <li>1 tbsp honey</li>
-              <li>Salt &amp; pepper to taste</li>
+              @foreach(explode("\n", $recipe->ingredients) as $ingredient)
+              <li>{{$ingredient}}</li>
+              @endforeach
             </ul>
           </div>
         </div>

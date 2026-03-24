@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::delete('/recipes/{recipe}', [RecipeController::class, 'delete'])->name("recipes.delete");
 
-Route::resource('/recipes', RecipeController::class);
+Route::resource('/recipes', RecipeController::class)->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

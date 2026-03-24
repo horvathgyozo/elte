@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("instructions");
             $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->integer("cooking_time");
+            $table->string("image_path")->nullable();
             $table->softDeletes();
 
             $table->timestamps();
