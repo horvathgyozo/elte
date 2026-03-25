@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/recipes/{recipe}', [RecipeController::class, "update"])->name("recipes.update");
 
 // Route::delete('/recipes/{recipe}', [RecipeController::class, "delete"])->name("recipes.delete");
-Route::resource('/recipes', RecipeController::class);
+Route::resource('/recipes', RecipeController::class)
+    ->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

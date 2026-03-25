@@ -30,7 +30,7 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal gap-1">
         <li><a href="dashboard.html">Home</a></li>
-        <li><a href="my-recipes.html">My Recipes</a></li>
+        <li><a href="{{ route('recipes.index') }}">My Recipes</a></li>
         <li><a href="favourites.html">Favourites</a></li>
         <li><a href="my-categories.html" class="menu-active font-medium">My Categories</a></li>
         <li><a href="{{ route('recipes.create') }}">+ Add Recipe</a></li>
