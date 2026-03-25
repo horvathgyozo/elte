@@ -46,7 +46,7 @@
       @foreach($recipes as $recipe)
       <div class="card bg-base-100 shadow-md hover:shadow-xl transition-shadow">
         <a href="{{ route('recipes.show', ['recipe' => $recipe]) }}">
-          <figure><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop" alt="Grilled Chicken Salad" class="w-full h-48 object-cover"></figure>
+          <figure><img src="{{ $recipe->image_path ? asset('storage/' . $recipe->image_path) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop' }}" alt="Grilled Chicken Salad" class="w-full h-48 object-cover"></figure>
         </a>
         <div class="card-body p-4">
           <h3 class="card-title text-base">{{$recipe->title}}</h3>

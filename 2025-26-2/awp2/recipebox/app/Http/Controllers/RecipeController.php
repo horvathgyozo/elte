@@ -31,8 +31,11 @@ class RecipeController extends Controller
         ]); 
     }
     public function store(RecipeFormRequest $request) {
+        $path = $request->file('image')->store('images');
+        $validated = $request->validated();
+        $validated['image_path'] = $path;
         // $recipe = Recipe::create($request->validated());
-        $recipe = Auth::user()->recipes()->create($request->validated());
+        $recipe = Auth::user()->recipes()->create($validated);
         if ($request->validated('categories')) {
             $recipe->categories()->attach($request->validated('categories'));
         }
@@ -48,7 +51,12 @@ class RecipeController extends Controller
     }
     public function update(RecipeFormRequest $request, Recipe $recipe) {
         Gate::authorize('access-recipe', $recipe);
-        $recipe->update($request->validated());
+        $validated = $request->validated();
+        if ($request->file('image')) {
+            $path = $request->file('image')->store('images');
+            $validated['image_path'] = $path;
+        }
+        $recipe->update($validated);
         if ($request->validated('categories')) {
             $recipe->categories()->sync($request->validated('categories'));
         } else {

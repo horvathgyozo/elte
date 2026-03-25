@@ -28,7 +28,7 @@ class RecipeFormRequest extends FormRequest
             "instructions" => "required|min:10",
             "cooking_time" => "required|numeric|min:1",
             "difficulty" => "required|in:easy,medium,hard",
-            // "image" => "nullable|image|max:2048",
+            "image" => "nullable|image|max:2048",
             "categories" => "array"
         ];
     }

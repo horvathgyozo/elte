@@ -6,7 +6,7 @@
     <h1 class="text-2xl font-bold mb-6">Add New Recipe</h1>
 
     <!-- method="POST" action="/recipes" enctype="multipart/form-data" -->
-    <form action="{{ route('recipes.store') }}" method="post" class="space-y-6">
+    <form action="{{ route('recipes.store') }}" method="post" enctype="multipart/form-data" class="space-y-6">
       @csrf
       <!-- Title -->
       <fieldset class="fieldset">

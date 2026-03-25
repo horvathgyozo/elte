@@ -12,7 +12,7 @@ class Recipe extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ["title", "description", "instructions", "ingredients", "cooking_time", "difficulty"];
+    protected $fillable = ["title", "description", "instructions", "ingredients", "cooking_time", "difficulty", "image_path"];
 
     public function categories() {
         return $this->belongsToMany(Category::class);
