@@ -1,0 +1,230 @@
+### Variable definition
+@baseUrl = http://localhost:8000/api
+
+# -----------------------------------------
+# AUTH
+# -----------------------------------------
+
+### Register a new user
+
+POST {{baseUrl}}/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New User",
+  "email": "test@example.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+
+### Login
+
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "pstamm@example.net",
+    "password": "password"
+}
+
+### Extract token from login response
+
+@authToken = {{login.response.body.token}}
+
+### Get authenticated user info
+
+GET {{baseUrl}}/user
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+### Logout (delete current token)
+
+POST {{baseUrl}}/logout
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+# -----------------------------------------
+# RECIPES
+# -----------------------------------------
+
+### List all recipes (paginated)
+
+GET {{baseUrl}}/recipes
+Accept: application/json
+
+### List recipes - page 2
+
+GET {{baseUrl}}/recipes?page=2
+Accept: application/json
+
+### Get a specific recipe
+
+GET {{baseUrl}}/recipes/1
+Accept: application/json
+
+### Create a new recipe (JSON, no image)
+
+POST {{baseUrl}}/recipes
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Tomato Soup",
+  "description": "Classic creamy tomato soup with a hint of basil.",
+  "ingredients": "tomatoes, water, sour cream, sugar, salt, flour",
+  "instructions": "1. Chop the tomatoes. 2. Boil until soft. 3. Blend and strain.",
+  "difficulty": "easy",
+  "cooking_time": 30
+}
+
+### Create a new recipe with categories (JSON, no image)
+
+POST {{baseUrl}}/recipes
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Beef Goulash",
+  "description": "Classic Hungarian beef goulash with paprika.",
+  "ingredients": "beef, onion, paprika, potato, salt, caraway seeds",
+  "instructions": "1. Dice the beef and onion. 2. Brown in oil with paprika. 3. Add water and simmer for 90 minutes.",
+  "difficulty": "medium",
+  "cooking_time": 90,
+  "categories": [1, 3]
+}
+
+### Create a new recipe with categories and image (multipart)
+
+POST {{baseUrl}}/recipes
+Content-Type: multipart/form-data; boundary=RecipeBoundary
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+--RecipeBoundary
+Content-Disposition: form-data; name="title"
+
+Beef Goulash with Photo
+--RecipeBoundary
+Content-Disposition: form-data; name="description"
+
+Classic Hungarian beef goulash with paprika.
+--RecipeBoundary
+Content-Disposition: form-data; name="ingredients"
+
+beef, onion, paprika, potato, salt, caraway seeds
+--RecipeBoundary
+Content-Disposition: form-data; name="instructions"
+
+1. Dice the beef and onion. 2. Brown in oil with paprika. 3. Add water and simmer for 90 minutes.
+--RecipeBoundary
+Content-Disposition: form-data; name="difficulty"
+
+medium
+--RecipeBoundary
+Content-Disposition: form-data; name="cooking_time"
+
+90
+--RecipeBoundary
+Content-Disposition: form-data; name="categories[]"
+
+1
+--RecipeBoundary
+Content-Disposition: form-data; name="categories[]"
+
+3
+--RecipeBoundary
+Content-Disposition: form-data; name="image"; filename="gulyas.jpg"
+Content-Type: image/jpeg
+
+< ./tests/Fixtures/gulash.jpg
+--RecipeBoundary--
+
+### Update a recipe (JSON, partial fields allowed)
+
+PATCH {{baseUrl}}/recipes/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Beef Goulash (updated)",
+  "difficulty": "hard",
+  "categories": [2]
+}
+
+### Update a recipe with new image (multipart)
+
+PATCH {{baseUrl}}/recipes/1
+Content-Type: multipart/form-data; boundary=UpdateBoundary
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+--UpdateBoundary
+Content-Disposition: form-data; name="title"
+
+Beef Goulash (updated with photo)
+--UpdateBoundary
+Content-Disposition: form-data; name="difficulty"
+
+hard
+--UpdateBoundary
+Content-Disposition: form-data; name="categories[]"
+
+2
+--UpdateBoundary
+Content-Disposition: form-data; name="image"; filename="gulyas_uj.jpg"
+Content-Type: image/jpeg
+
+< ./tests/Fixtures/gulash.jpg
+--UpdateBoundary--
+
+### Delete a recipe (soft delete)
+
+DELETE {{baseUrl}}/recipes/1
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+# -----------------------------------------
+# RECIPE CATEGORIES (separate sync)
+# -----------------------------------------
+
+### Sync categories for a recipe (replaces all existing)
+
+PUT {{baseUrl}}/recipes/1/categories
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "categories": [1, 2, 3]
+}
+
+### Remove all categories from a recipe
+
+PUT {{baseUrl}}/recipes/1/categories
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "categories": []
+}
+
+# -----------------------------------------
+# CATEGORIES
+# -----------------------------------------
+
+### List all categories
+
+GET {{baseUrl}}/categories
+Accept: application/json
+
+### Get a specific category with its recipes
+
+GET {{baseUrl}}/categories/1
+Accept: application/json
